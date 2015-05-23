@@ -79,6 +79,7 @@ class @SchemaViews
     $().w2grid(@assetGrid)
 
     @setupSidebar()
+    @setupMainWindow()
 
     w2ui.layout.content('main', w2ui.mainContentLayout)
     w2ui.layout.content('left', w2ui.sidebarLayout)
@@ -87,6 +88,9 @@ class @SchemaViews
     $().w2layout(@sidebarLayout)
     w2ui.sidebarLayout.content('main', $().w2sidebar(@sidebarTableListing))
     w2ui.sidebarLayout.content('bottom', $().w2sidebar(@sidebarDivisionListing))
+
+  setupMainWindow: ->
+    w2ui.mainContentLayout.content('top', $('#mainToolbar').html())
 
   # Load Logic
   fetchSidebarData: ->
