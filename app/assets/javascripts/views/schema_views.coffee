@@ -71,7 +71,7 @@ class @SchemaViews
   constructor: ->
     @setupIndexWindow()
     @fetchSidebarData()
-    @loadTables($('#projects').val(), $('#versions').val())
+    @setupHook()
 
   setupIndexWindow: ->
     $('#main-window').w2layout(@applicationLayout)
@@ -97,16 +97,7 @@ class @SchemaViews
 
   # Load Logic
   fetchSidebarData: ->
-    w2ui.sidebarTableListing.insert('tables', null, [
-      { id: 'grid1', text: 'certMasteries', img: 'icon-page' },
-      { id: 'grid2', text: 'agtAgents', img: 'icon-page' },
-      { id: 'abcd', text: 'invMarketGroups', img: 'icon-page' },
-    ])
-    w2ui.sidebarDivisionListing.insert('divisions', null, [
-      { id: 'grid1', text: 'Gender', img: 'icon-page' },
-      { id: 'grid2', text: 'Locales', img: 'icon-page' },
-      { id: 'abcd', text: 'Something', img: 'icon-page' },
-    ])
+    @loadTables($('#projects').val(), $('#versions').val())
 
   removeSidebarTableData: ->
     ids = _.map(w2ui.sidebarTableListing.nodes[0].nodes, (v) -> "#{v.id}")
@@ -117,10 +108,31 @@ class @SchemaViews
     _.each(ids, (v) -> w2ui.sidebarDivisionListing.remove(v))
 
   loadTables: (projectId, versionId) ->
+    url = "/api/projects/#{projectId}/tables"
+    if versionId
+      url = url + "?version=#{versionId}"
+
     @removeSidebarTableData()
 
-    url = "/api/projects/#{projectId}/tables?version=#{versionId}"
-    $.get(url, (data) ->
+    $.get(url, (data) =>
       if data.length
-        w2ui.sidebarTableListing.add(data)
+        w2ui.sidebarTableListing.insert('tables', null, data)
+    )
+
+  # Hooks
+  setupHook: ->
+    @setupProjectHook()
+    @setupVersionHook()
+
+  setupProjectHook: ->
+    $(document.body).delegate('#projects', 'change', (v) ->
+      projectId = $(@).val()
+      window.location.href = "/projects/#{projectId}/schemata"
+    )
+
+  setupVersionHook: ->
+    projectId = $('#projects').val()
+    $(document.body).delegate('#versions', 'change', (v) =>
+      versionId = $(v.currentTarget).val()
+      @loadTables(projectId, versionId)
     )
