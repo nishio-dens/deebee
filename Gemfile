@@ -5,6 +5,7 @@ gem 'mysql2'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
+gem 'execjs'
 gem 'therubyracer',  platforms: :ruby
 gem 'less-rails'
 gem 'jquery-rails'

@@ -4,7 +4,6 @@
 #= require jquery_ujs
 #= require admin-lte/bootstrap/js/bootstrap
 #= require admin-lte/dist/js/app.js
-#= require animsition/dist/js/jquery.animsition
 #= require underscore
 #= require backbone
 #= require handlebars.runtime

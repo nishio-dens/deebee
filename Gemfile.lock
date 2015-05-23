@@ -36,7 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    annotate (2.6.8)
+    annotate (2.6.10)
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
     arel (6.0.0)
@@ -95,14 +95,14 @@ GEM
       sprockets (>= 2.0.0, < 4.0)
       tilt (~> 1.2)
     i18n (0.7.0)
-    jbuilder (2.2.13)
+    jbuilder (2.2.16)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (5.0.3)
+    jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.2)
     less (2.6.0)
@@ -127,9 +127,9 @@ GEM
     mysql2 (0.3.18)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
-    oj (2.12.7)
+    oj (2.12.8)
     orm_adapter (0.5.0)
-    paranoia (2.1.1)
+    paranoia (2.1.2)
       activerecord (~> 4.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -180,7 +180,7 @@ GEM
     request_store (1.1.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
-    sass (3.4.13)
+    sass (3.4.14)
     sass-rails (5.0.3)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
@@ -197,7 +197,7 @@ GEM
     spring (1.3.6)
     sprockets (3.1.0)
       rack (~> 1.0)
-    sprockets-rails (2.3.0)
+    sprockets-rails (2.3.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
@@ -229,6 +229,7 @@ DEPENDENCIES
   coffee-rails
   convergence
   devise
+  execjs
   font-awesome-rails
   foreigner
   gon

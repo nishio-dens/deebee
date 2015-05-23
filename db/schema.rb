@@ -11,52 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150510150217) do
-
-  create_table "projects", force: :cascade do |t|
-    t.string   "name",         limit: 255, null: false
-    t.string   "key",          limit: 255, null: false
-    t.string   "description",  limit: 255, null: false
-    t.string   "creator_name", limit: 255
-    t.string   "updater_name", limit: 255
-    t.integer  "created_by",   limit: 4
-    t.integer  "updated_by",   limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.datetime "deleted_at"
-  end
-
-  create_table "translation_histories", force: :cascade do |t|
-    t.integer  "translation_id", limit: 4,     null: false
-    t.string   "variable_name",  limit: 255,   null: false
-    t.text     "ja",             limit: 65535, null: false
-    t.text     "en",             limit: 65535, null: false
-    t.integer  "project_id",     limit: 4,     null: false
-    t.string   "creator_name",   limit: 255,   null: false
-    t.string   "updater_name",   limit: 255,   null: false
-    t.string   "changer_name",   limit: 255,   null: false
-    t.integer  "created_by",     limit: 4,     null: false
-    t.integer  "updated_by",     limit: 4,     null: false
-    t.integer  "changed_by",     limit: 4,     null: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.datetime "changed_at",                   null: false
-    t.datetime "deleted_at"
-  end
-
-  create_table "translations", force: :cascade do |t|
-    t.string   "variable_name", limit: 255,   null: false
-    t.text     "ja",            limit: 65535, null: false
-    t.text     "en",            limit: 65535, null: false
-    t.integer  "project_id",    limit: 4,     null: false
-    t.string   "creator_name",  limit: 255,   null: false
-    t.string   "updater_name",  limit: 255,   null: false
-    t.integer  "created_by",    limit: 4,     null: false
-    t.integer  "updated_by",    limit: 4,     null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.datetime "deleted_at"
-  end
+ActiveRecord::Schema.define(version: 0) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username",           limit: 255,              null: false
