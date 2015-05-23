@@ -1,23 +1,16 @@
 <script id="sidebarTop" type="text/x-jsrender">
-  <div style="padding: 10px 5px; border-bottom: 1px solid silver">
-
-    <div class="row">
     <div class="col-xs-12">
     <div class="form">
     <div class="form-group">
       <label>Project</label>
       <%= select_tag 'projects', options_for_select(@projects.map { |v| [v.name, v.id] }), class: 'form-control projects' %>
     </div>
-    <br>
     <div class="form-group">
       <label>Version</label>
       <%= select_tag 'versions', options_for_select(@versions.map { |v| [v.name, v.id] }), class: 'form-control versions' %>
     </div>
     </div>
     </div>
-    </div>
-
-  </div>
 </script>
 
 

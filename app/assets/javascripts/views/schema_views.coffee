@@ -14,13 +14,13 @@ class @SchemaViews
   sidebarLayout:
     name: 'sidebarLayout'
     panels: [
-      { type: 'main', size: '70%', resizable: true, style: @pstyle, content: 'main' },
+      { type: 'top', size: '150', style: @pstyle, content: 'top' },
+      { type: 'main', resizable: true, style: @pstyle, content: 'main' },
       { type: 'bottom', size: '30%', resizable: true, style: @pstyle, content: 'bottom' }
     ]
 
   sidebarTableListing:
     name: 'sidebarTableListing',
-    topHTML: $('#sidebarTop').render(),
     nodes: [
       { id: 'tables', text: 'Tables', group: true, expanded: true, nodes: []}
     ],
@@ -88,6 +88,8 @@ class @SchemaViews
 
   setupSidebar: ->
     $().w2layout(@sidebarLayout)
+
+    w2ui.sidebarLayout.content('top', $('#sidebarTop').render())
     w2ui.sidebarLayout.content('main', $().w2sidebar(@sidebarTableListing))
     w2ui.sidebarLayout.content('bottom', $().w2sidebar(@sidebarDivisionListing))
 
