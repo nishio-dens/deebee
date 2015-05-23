@@ -45,25 +45,26 @@ class @SchemaViews
   schemaGrid:
     name: 'schemaGrid',
     autoLoad: true,
-    limit: 200,
-    url: '/',
-    method: 'GET',
-    show: {
-      toolbar: true,
-      toolbarAdd: true
-    },
+    # url: '/',
+    # method: 'GET',
     columns: [
-      { field: 'id', caption: 'ID', size: '50px', sortable: true }
-      { field: 'asset_title', caption: 'アセット名', size: '200px', sortable: true }
-      { field: 'status', caption: 'ステータス', size: '100px', sortable: true }
-      { field: 'series_title', caption: 'シリーズ名', size: '200px', sortable: true }
-      { field: 'season_title', caption: 'シーズン名', size: '200px', sortable: true }
-      { field: 'program_type', caption: 'プログラム', size: '100px', sortable: true }
-      { field: 'text_language', caption: 'テキスト', size: '70px', sortable: true }
-      { field: 'assignee', caption: 'QC担当者', size: '150px', sortable: true }
-      { field: 'transcoding_progress', caption: 'DI進捗', size: '100px', sortable: true }
-      { field: 'created_at', caption: '作成日', size: '200px', sortable: true }
-      { field: 'updated_at', caption: '更新日', size: '200px', sortable: true }
+      { field: 'column', caption: 'Column', size: '150px', sortable: true }
+      { field: 'type', caption: 'Type', size: '100px', sortable: true }
+      { field: 'length', caption: 'Length', size: '60px', sortable: true }
+      { field: 'signed', caption: 'Signed', size: '60px', sortable: true }
+      { field: 'binary', caption: 'Binary', size: '60px', sortable: true }
+      { field: 'notNull', caption: 'NotNull', size: '60px', sortable: true }
+      { field: 'default', caption: 'Default', size: '100px', sortable: true }
+      { field: 'key', caption: 'Key', size: '50px', sortable: true }
+      { field: 'example', caption: 'Example', size: '130px', sortable: true }
+      { field: 'related', caption: 'Related', size: '130px', sortable: true }
+      { field: 'comment', caption: 'comment', size: '200px', sortable: true }
+      { field: 'note', caption: 'note', size: '200px', sortable: true }
+      { field: 'version', caption: 'Version', size: '60px', sortable: true }
+      { field: 'createdAt', caption: 'CreatedAt', size: '200px', sortable: true }
+      { field: 'updatedAt', caption: 'UpdatedAt', size: '200px', sortable: true }
+      { field: 'createdBy', caption: 'CreatedBy', size: '200px', sortable: true }
+      { field: 'updatedBy', caption: 'updatedBy', size: '200px', sortable: true }
     ]
 
   # Functions
@@ -76,7 +77,7 @@ class @SchemaViews
 
     # on memory component
     $().w2layout(@mainContentLayout)
-    $().w2grid(@assetGrid)
+    $().w2grid(@schemaGrid)
 
     @setupSidebar()
     @setupMainWindow()
@@ -91,16 +92,17 @@ class @SchemaViews
 
   setupMainWindow: ->
     w2ui.mainContentLayout.content('top', $('#mainToolbar').html())
+    w2ui.mainContentLayout.content('main', w2ui.schemaGrid)
 
   # Load Logic
   fetchSidebarData: ->
     w2ui.sidebarTableListing.insert('tables', null, [
-      { id: 'grid1', text: 'certMasteries', img: 'icon-page', selected: true },
+      { id: 'grid1', text: 'certMasteries', img: 'icon-page' },
       { id: 'grid2', text: 'agtAgents', img: 'icon-page' },
       { id: 'abcd', text: 'invMarketGroups', img: 'icon-page' },
     ])
     w2ui.sidebarDivisionListing.insert('divisions', null, [
-      { id: 'grid1', text: 'Gender', img: 'icon-page', selected: true },
+      { id: 'grid1', text: 'Gender', img: 'icon-page' },
       { id: 'grid2', text: 'Locales', img: 'icon-page' },
       { id: 'abcd', text: 'Something', img: 'icon-page' },
     ])
