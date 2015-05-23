@@ -71,6 +71,7 @@ class @SchemaViews
   constructor: ->
     @setupIndexWindow()
     @fetchSidebarData()
+    @loadTables($('#projects').val(), $('#versions').val())
 
   setupIndexWindow: ->
     $('#main-window').w2layout(@applicationLayout)
@@ -107,3 +108,19 @@ class @SchemaViews
       { id: 'abcd', text: 'Something', img: 'icon-page' },
     ])
 
+  removeSidebarTableData: ->
+    ids = _.map(w2ui.sidebarTableListing.nodes[0].nodes, (v) -> "#{v.id}")
+    _.each(ids, (v) -> w2ui.sidebarTableListing.remove(v))
+
+  removeSidebarDivisionData: ->
+    ids = _.map(w2ui.sidebarDivisionListing.nodes[0].nodes, (v) -> "#{v.id}")
+    _.each(ids, (v) -> w2ui.sidebarDivisionListing.remove(v))
+
+  loadTables: (projectId, versionId) ->
+    @removeSidebarTableData()
+
+    url = "/api/projects/#{projectId}/tables?version=#{versionId}"
+    $.get(url, (data) ->
+      if data.length
+        w2ui.sidebarTableListing.add(data)
+    )
