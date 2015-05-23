@@ -99,8 +99,7 @@ class @SchemaViews
 
   # Load Logic
   fetchSidebarData: ->
-    # FIXME
-    @loadTables(1, 1)
+    @loadTables(gon.project_id, gon.version_id)
 
   removeSidebarTableData: ->
     ids = _.map(w2ui.sidebarTableListing.nodes[0].nodes, (v) -> "#{v.id}")
@@ -134,9 +133,7 @@ class @SchemaViews
     )
 
   setupVersionHook: ->
-    # FIXME
-    # projectId = $('#projects').val()
-    projectId = 1
+    projectId = gon.project_id
     $(document.body).delegate('#versions', 'change', (v) =>
       versionId = $(v.currentTarget).val()
       @loadTables(projectId, versionId)
