@@ -1,0 +1,43 @@
+<div class="box">
+  {{#if dummy}}
+  <div class="box box-default">
+    <div class="callout">
+    <h4>変数を選択してください。</h4>
+    <p>I18n テーブルから変数を一つ選択してください。</p>
+    <p>新規に変数を追加する場合は、新規変数追加ボタンを押してください。</p>
+    </div>
+    </div><!-- /.box-body -->
+  </div>
+  {{else}}
+  <!-- form start -->
+  <form role="form">
+    <div class="box-body">
+      <div class="form-group">
+        <label>変数名</label>
+        <input class="form-control" id="transformVariableName">
+      </div>
+
+      <div class="form-group">
+        <label>日本語</label>
+        <textarea class="form-control" type="text" id="transformJa"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>英語</label>
+        <textarea class="form-control" type="text" id="transformEn"></textarea>
+      </div>
+
+      <div class="text-right">
+        <button type="submit" id="transformSubmit" class="btn btn-primary btn-sm">
+        {{#if isNew}}
+          新規作成
+        {{else}}
+          更新
+        {{/if}}
+        </button>
+      </div>
+
+    </div><!-- /.box-body -->
+  </form>
+  {{/if}}
+</div>

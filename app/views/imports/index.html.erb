@@ -1,0 +1,46 @@
+<div class="content-wrapper">
+  <section class="content-header ml-10">
+    <h1>
+      ファイルインポート STEP1
+      <small>
+        ファイルから翻訳データを取り込みます。
+      </small>
+    </h1>
+  </section>
+
+<div class="content">
+<div class="col-xs-12">
+
+<div class="box box-primary">
+  <div class="box-header">
+    <h3 class="box-title"><%= @project.name %> へのデータ取り込み設定</h3>
+  </div><!-- /.box-header -->
+
+  <!-- form start -->
+  <div class="box-body">
+    <% if @errors.present? %>
+    <div class="alert alert-danger alert-dismissable">
+      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+      <h4><i class="icon fa fa-ban"></i> エラー</h4>
+      <%= @errors.join('  ') %>
+    </div>
+    <% end %>
+
+    <%= simple_form_for @form, url: confirm_project_imports_path(project_id: @project.id), html: { multipart: true } do |f| %>
+      <%= f.input :locale, label: '取り込む言語', collection: ['ja', 'en'], include_blank: false %>
+      <%= f.input :filetype, label: 'ファイルタイプ', collection: ['yaml'], include_blank: false %>
+      <%= f.input :file, label: 'インポートするファイル', as: :file %>
+      <%= f.input :sync_delete, label: 'ファイルに存在しない翻訳データを削除する', as: :boolean %>
+  </div><!-- /.box-body -->
+
+  <div class="box-footer">
+    <%= f.button :submit, '確認する' %>
+  </div>
+  <% end %>
+</div>
+
+
+</div>
+</div><!-- /content -->
+
+</div> <!-- /content-wrapper-->

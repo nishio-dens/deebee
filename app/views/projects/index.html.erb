@@ -1,0 +1,53 @@
+<div class="content-wrapper">
+  <section class="content-header ml-10">
+    <h1>
+      Dashboard
+    </h1>
+  </section>
+
+<div class="content">
+<div class="col-xs-12">
+<div class="box">
+<div class="box-header">
+
+<h3 class="box-title">Project一覧</h3>
+<div class="box-tools">
+</div>
+</div><!-- /.box-header -->
+<div class="box-body table-responsive no-padding">
+  <table class="table table-hover">
+    <tbody><tr>
+        <th>名前</th>
+        <th>キー</th>
+        <th>概要</th>
+        <th>作成日</th>
+        <th>進捗</th>
+      </tr>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= link_to project.name, project_translations_path(project.id) %></td>
+          <td><%= link_to project.key, project_translations_path(project.id) %></td>
+          <td><%= project.description %></td>
+          <td><%= project.created_at %></td>
+          <td>
+            <div class="progress-group">
+              <span class="progress-text">翻訳率</span>
+              <span class="progress-number"><b><%= project.untranslated_count %></b>
+                /<%= project.translations_count %>
+              </span>
+              <div class="progress sm">
+                <div style="width: <%= project.translation_progress %>%" class="progress-bar progress-bar-green"></div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+  </tbody></table>
+</div><!-- /.box-body -->
+
+</div><!-- /.box -->
+</div>
+
+</div><!-- /content -->
+
+</div> <!-- /content-wrapper-->

@@ -1,0 +1,10 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "admin-lte": "latest",
+    "marionette": "latest",
+    "backbone.stickit": "latest",
+    "backbone.trackit": "latest",
+    "animsition": "latest"
+  }
+}
