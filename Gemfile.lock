@@ -67,7 +67,6 @@ GEM
       mysql2
       slop (~> 3.6)
     debug_inspector (0.0.2)
-    deep_merge (1.0.1)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -229,7 +228,6 @@ DEPENDENCIES
   bower-rails
   coffee-rails
   convergence
-  deep_merge
   devise
   font-awesome-rails
   foreigner
