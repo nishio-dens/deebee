@@ -10,4 +10,5 @@
 #= require marionette/lib/backbone.marionette
 #= require backbone.stickit/backbone.stickit
 #= require backbone.trackit/backbone.trackit
+#= require w2ui/w2ui-1.4.2.min 
 #= require_tree .

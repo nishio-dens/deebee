@@ -11,8 +11,8 @@
     <%= include_gon %>
     <%= javascript_include_tag "application" %>
   </head>
-  <body class="skin-blue layout-top-nav" data-controller="<%= params[:controller] %>">
-    <div id="trans-header" class="frame-element">
+  <body class="layout-top-nav" data-controller="<%= params[:controller] %>">
+    <div id="header" class="frame-element">
       <%= render 'shared/topnav' %>
     </div>
 
@@ -20,7 +20,7 @@
       <%= yield %>
     </div><!-- /main-container -->
 
-    <div id="trans-footer" class="frame-element">
+    <div id="footer" class="frame-element">
       <%= render 'shared/footer' %>
     </div><!-- /trans-footer -->
   </body>
