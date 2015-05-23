@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'projects#index'
+  root to: 'schemata#index'
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :projects, only: [:index] do
+    resources :schemata
   end
 
   namespace :api, defaults: { format: :json } do
