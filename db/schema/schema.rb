@@ -13,3 +13,10 @@ create_table :users, collate: :utf8_bin, comment: "" do |t|
 
   t.index :email, name: "index_users_on_email", unique: true
 end
+
+create_table :projects , collate: :utf8_bin, comment: "" do |t|
+  t.int :id, primary_key: true, extra: :auto_increment
+  t.varchar :name
+  t.datetime :created_at
+  t.datetime :updated_at
+end
