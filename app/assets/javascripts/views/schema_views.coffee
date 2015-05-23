@@ -2,6 +2,15 @@ class @SchemaViews
   pstyle:
     'border: 1px solid #dfdfdf'
 
+  # Layouts
+  applicationLayout:
+    name: 'layout',
+    padding: 4,
+    panels: [
+      { type: 'left', size: 200, resizable: true, style: @pstyle, content: 'left' },
+      { type: 'main', style: @pstyle, content: 'main' },
+    ]
+
   sidebarLayout:
     name: 'sidebarLayout'
     panels: [
@@ -11,7 +20,7 @@ class @SchemaViews
 
   sidebarTableListing:
     name: 'sidebarTableListing',
-    topHTML: 'test' + $('#sidebarTop').html(),
+    topHTML: $('#sidebarTop').html(),
     nodes: [
       { id: 'tables', text: 'Tables', group: true, expanded: true, nodes: []}
     ],
@@ -26,6 +35,12 @@ class @SchemaViews
     onClick: (event) ->
       alert(event.target)
 
+  mainContentLayout:
+    name: 'mainContentLayout',
+    panels: [
+      { type: 'top', size: 100, style: @pstyle, content: 'top' },
+      { type: 'main', style: @pstyle, content: 'main' }
+    ]
 
   schemaGrid:
     name: 'schemaGrid',
@@ -51,29 +66,29 @@ class @SchemaViews
       { field: 'updated_at', caption: '更新日', size: '200px', sortable: true }
     ]
 
+  # Functions
   constructor: ->
     @setupIndexWindow()
     @fetchSidebarData()
 
   setupIndexWindow: ->
-    $('#main-window').w2layout(
-      name: 'layout',
-      padding: 4,
-      panels: [
-        { type: 'left', size: 200, resizable: true, style: @pstyle, content: 'left' },
-        { type: 'main', style: @pstyle, content: 'main' },
-        { type: 'preview', size: '50%', resizable: true, hidden: true, style: @pstyle, content: 'preview' }
-      ]
-    )
+    $('#main-window').w2layout(@applicationLayout)
+
     # on memory component
+    $().w2layout(@mainContentLayout)
     $().w2grid(@assetGrid)
 
     @setupSidebar()
 
-    # default component
-    w2ui.layout.content('main', w2ui.assetGrid)
-    w2ui.layout.content('left', w2ui['sidebarLayout'])
+    w2ui.layout.content('main', w2ui.mainContentLayout)
+    w2ui.layout.content('left', w2ui.sidebarLayout)
 
+  setupSidebar: ->
+    $().w2layout(@sidebarLayout)
+    w2ui.sidebarLayout.content('main', $().w2sidebar(@sidebarTableListing))
+    w2ui.sidebarLayout.content('bottom', $().w2sidebar(@sidebarDivisionListing))
+
+  # Load Logic
   fetchSidebarData: ->
     w2ui.sidebarTableListing.insert('tables', null, [
       { id: 'grid1', text: 'certMasteries', img: 'icon-page', selected: true },
@@ -86,8 +101,3 @@ class @SchemaViews
       { id: 'abcd', text: 'Something', img: 'icon-page' },
     ])
 
-
-  setupSidebar: ->
-    $().w2layout(@sidebarLayout)
-    w2ui.sidebarLayout.content('main', $().w2sidebar(@sidebarTableListing))
-    w2ui.sidebarLayout.content('bottom', $().w2sidebar(@sidebarDivisionListing))

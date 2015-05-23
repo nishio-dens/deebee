@@ -8,7 +8,11 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div id="navbar-collapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><%= link_to 'Dashboard', root_path %></li>
+          <li>
+            <%= link_to root_path do %>
+              <i class="fa fa-database mr-5"></i> Projects
+            <% end %>
+          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="" class="animsition-link"><b><%= "DummyUser" %></b> </a></li>
