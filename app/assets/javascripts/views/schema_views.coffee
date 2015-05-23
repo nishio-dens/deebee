@@ -97,6 +97,7 @@ class @SchemaViews
 
   # Load Logic
   fetchSidebarData: ->
+    # FIXME
     @loadTables(1, 1)
 
   removeSidebarTableData: ->
@@ -131,6 +132,7 @@ class @SchemaViews
     )
 
   setupVersionHook: ->
+    # FIXME
     # projectId = $('#projects').val()
     projectId = 1
     $(document.body).delegate('#versions', 'change', (v) =>
