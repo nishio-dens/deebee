@@ -20,7 +20,7 @@ class @SchemaViews
 
   sidebarTableListing:
     name: 'sidebarTableListing',
-    topHTML: $('#sidebarTop').html(),
+    topHTML: $('#sidebarTop').render(),
     nodes: [
       { id: 'tables', text: 'Tables', group: true, expanded: true, nodes: []}
     ],
@@ -92,12 +92,12 @@ class @SchemaViews
     w2ui.sidebarLayout.content('bottom', $().w2sidebar(@sidebarDivisionListing))
 
   setupMainWindow: ->
-    w2ui.mainContentLayout.content('top', $('#mainToolbar').html())
+    w2ui.mainContentLayout.content('top', $('#mainToolbar').render())
     w2ui.mainContentLayout.content('main', w2ui.schemaGrid)
 
   # Load Logic
   fetchSidebarData: ->
-    @loadTables($('#projects').val(), $('#versions').val())
+    @loadTables(1, 1)
 
   removeSidebarTableData: ->
     ids = _.map(w2ui.sidebarTableListing.nodes[0].nodes, (v) -> "#{v.id}")
@@ -131,7 +131,8 @@ class @SchemaViews
     )
 
   setupVersionHook: ->
-    projectId = $('#projects').val()
+    # projectId = $('#projects').val()
+    projectId = 1
     $(document.body).delegate('#versions', 'change', (v) =>
       versionId = $(v.currentTarget).val()
       @loadTables(projectId, versionId)
