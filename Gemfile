@@ -25,7 +25,6 @@ gem 'convergence'
 gem 'gon'
 gem 'paranoia'
 gem 'simple_form'
-gem 'deep_merge'
 
 group :development do
   gem 'quiet_assets'

@@ -11,16 +11,8 @@ Rails.application.routes.draw do
   end
 
   resources :projects, only: [:index] do
-    resources :translations, only: [:index]
-    resources :imports, only: [:index, :create] do
-      post :confirm, on: :collection
-    end
-    resources :exports, only: [:index]
   end
 
   namespace :api, defaults: { format: :json } do
-    resources :projects do
-      resources :translations
-    end
   end
 end

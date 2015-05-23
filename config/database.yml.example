@@ -1,7 +1,7 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: trans1_development
+  database: deebee_development 
   pool: 5
   timeout: 5000
   username: root
@@ -11,7 +11,7 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  database: trans1_test
+  database: deebee_test
   pool: 5
   timeout: 5000
   username: root
@@ -21,7 +21,7 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: trans1
+  database: deebee
   pool: 5
   timeout: 5000
   username: root

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Trans1" %> | I18n Quality Management System</title>
+    <title><%= content_for?(:title) ? yield(:title) : "Deebee" %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag "application", :media => "all" %>
@@ -16,7 +16,7 @@
       <%= render 'shared/topnav' %>
     </div>
 
-    <div class="main-container frame-element animsition">
+    <div class="main-container frame-element">
       <%= yield %>
     </div><!-- /main-container -->
 
