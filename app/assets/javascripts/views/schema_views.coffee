@@ -38,7 +38,7 @@ class @SchemaViews
   mainContentLayout:
     name: 'mainContentLayout',
     panels: [
-      { type: 'top', size: 100, style: @pstyle, content: 'top' },
+      { type: 'top', size: 60, style: @pstyle, content: 'top' },
       { type: 'main', style: @pstyle, content: 'main' }
     ]
 
