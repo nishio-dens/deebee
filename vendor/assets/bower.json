@@ -6,6 +6,7 @@
     "backbone.stickit": "latest",
     "backbone.trackit": "latest",
     "animsition": "latest",
-    "w2ui": "latest"
+    "w2ui": "latest",
+    "jsrender": "latest"
   }
 }
