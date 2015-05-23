@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "tables", force: :cascade do |t|
+    t.integer  "version_id", limit: 4,   null: false
+    t.string   "name",       limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "tables", ["version_id"], name: "tables_version_id_fk", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "username",           limit: 255,              null: false
     t.string   "email",              limit: 255, default: "", null: false
@@ -34,4 +43,16 @@ ActiveRecord::Schema.define(version: 0) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  create_table "versions", force: :cascade do |t|
+    t.integer  "project_id",  limit: 4,     null: false
+    t.string   "name",        limit: 255,   null: false
+    t.text     "description", limit: 65535, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "versions", ["project_id"], name: "versions_project_id_fk", using: :btree
+
+  add_foreign_key "tables", "versions", name: "tables_version_id_fk"
+  add_foreign_key "versions", "projects", name: "versions_project_id_fk"
 end

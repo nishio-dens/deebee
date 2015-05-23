@@ -15,7 +15,6 @@ gem 'jbuilder'
 gem 'sdoc'
 gem 'therubyracer',  platforms: :ruby
 gem 'migration_comments'
-gem 'foreigner'
 gem 'bower-rails'
 gem 'font-awesome-rails'
 gem 'handlebars_assets'
