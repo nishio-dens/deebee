@@ -37,6 +37,7 @@ create_table :tables, collate: :utf8_bin do |t|
   t.int :version_id
   t.varchar :name
   t.int :version_id
+  t.text :description
   t.datetime :created_at
   t.datetime :updated_at
 

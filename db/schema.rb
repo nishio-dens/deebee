@@ -20,10 +20,11 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "tables", force: :cascade do |t|
-    t.integer  "version_id", limit: 4,   null: false
-    t.string   "name",       limit: 255, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "version_id",  limit: 4,     null: false
+    t.string   "name",        limit: 255,   null: false
+    t.text     "description", limit: 65535, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "tables", ["version_id"], name: "tables_version_id_fk", using: :btree
