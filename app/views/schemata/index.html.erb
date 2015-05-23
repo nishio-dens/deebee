@@ -1,3 +1,9 @@
-<% 100.times do %>
-<b>ABCDEFGHI<b><br>
-<% end %>
+<div id="sidebarTop" class="hide">
+  <div style="padding: 10px 5px; border-bottom: 1px solid silver">
+    ProjectName
+
+    <%= select_tag 'projects', options_for_select(["TestProject", 1]) %>
+
+  </div>
+</div>
+

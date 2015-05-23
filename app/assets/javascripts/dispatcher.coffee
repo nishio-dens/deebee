@@ -3,7 +3,6 @@ class Dispatcher
     pageId = $('body').data('controller')
 
     views = new SchemaViews()
-    views.setupIndexWindow()
 
 $ ->
   new Dispatcher()

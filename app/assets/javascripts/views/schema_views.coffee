@@ -2,20 +2,30 @@ class @SchemaViews
   pstyle:
     'border: 1px solid #dfdfdf'
 
-  sidebar:
-    name: 'sidebar',
+  sidebarLayout:
+    name: 'sidebarLayout'
+    panels: [
+      { type: 'main', size: '70%', resizable: true, style: @pstyle, content: 'main' },
+      { type: 'bottom', size: '30%', resizable: true, style: @pstyle, content: 'bottom' }
+    ]
+
+  sidebarTableListing:
+    name: 'sidebarTableListing',
+    topHTML: 'test' + $('#sidebarTop').html(),
     nodes: [
-      { id: 'general', text: 'Contents', group: true, expanded: true, nodes: [
-        { id: 'grid1', text: 'Assets', img: 'icon-page', selected: true },
-        { id: 'grid2', text: 'Files', img: 'icon-page' }
-      ]}
+      { id: 'tables', text: 'Tables', group: true, expanded: true, nodes: []}
     ],
     onClick: (event) ->
-      switch event.target
-         when 'grid1'
-           location.href = '/dashboard'
-         when 'grid2'
-           location.href = '/dashboard'
+      alert(event.target)
+
+  sidebarDivisionListing:
+    name: 'sidebarDivisionListing',
+    nodes: [
+      { id: 'divisions', text: 'Divisions', group: true, expanded: true, nodes: []}
+    ],
+    onClick: (event) ->
+      alert(event.target)
+
 
   schemaGrid:
     name: 'schemaGrid',
@@ -41,6 +51,10 @@ class @SchemaViews
       { field: 'updated_at', caption: '更新日', size: '200px', sortable: true }
     ]
 
+  constructor: ->
+    @setupIndexWindow()
+    @fetchSidebarData()
+
   setupIndexWindow: ->
     $('#main-window').w2layout(
       name: 'layout',
@@ -51,10 +65,29 @@ class @SchemaViews
         { type: 'preview', size: '50%', resizable: true, hidden: true, style: @pstyle, content: 'preview' }
       ]
     )
-    w2ui.layout.content('left', $().w2sidebar(@sidebar))
-
     # on memory component
     $().w2grid(@assetGrid)
 
+    @setupSidebar()
+
     # default component
     w2ui.layout.content('main', w2ui.assetGrid)
+    w2ui.layout.content('left', w2ui['sidebarLayout'])
+
+  fetchSidebarData: ->
+    w2ui.sidebarTableListing.insert('tables', null, [
+      { id: 'grid1', text: 'certMasteries', img: 'icon-page', selected: true },
+      { id: 'grid2', text: 'agtAgents', img: 'icon-page' },
+      { id: 'abcd', text: 'invMarketGroups', img: 'icon-page' },
+    ])
+    w2ui.sidebarDivisionListing.insert('divisions', null, [
+      { id: 'grid1', text: 'Gender', img: 'icon-page', selected: true },
+      { id: 'grid2', text: 'Locales', img: 'icon-page' },
+      { id: 'abcd', text: 'Something', img: 'icon-page' },
+    ])
+
+
+  setupSidebar: ->
+    $().w2layout(@sidebarLayout)
+    w2ui.sidebarLayout.content('main', $().w2sidebar(@sidebarTableListing))
+    w2ui.sidebarLayout.content('bottom', $().w2sidebar(@sidebarDivisionListing))
