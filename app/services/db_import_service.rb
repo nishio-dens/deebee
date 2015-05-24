@@ -11,25 +11,32 @@ class DbImportService
   end
 
   def import(description = "")
-    information_schema_columns = @client.query(select_mysql_columns(@database)).to_a
     Version.transaction do
       create_snapshot(description)
     end
   end
 
   def create_snapshot(description)
+    information_schema_columns = @client.query(select_mysql_columns(@database)).to_a
+
     version = Version.new(
       project_id: @project.id,
-      name: "v#{Time.current.strftime("%y%m%d_%H%M%S")}_#{Random.new.rand(1000)}",
+      name: "v#{Time.current.strftime("%y%m%d_%H%M%S")}",
       description: description
     )
+    current_version = Version.where(project_id: @project.id).order(id: :desc).limit(1).first()
+
     columns = information_schema_columns.group_by { |v| v['TABLE_SCHEMA'] }.map do |table_name, cc|
+      current_table = current_version.tables.find_by(name: table_name)
       table = Table.new(
         version: version,
         name: table_name,
-        description: description
+        description: current_table.try(:description)
       )
+
+      current_columns = if current_table.present? ? current_table.columns : []
       cc.map do |column|
+        current_column = current_columns.find { |v| v.column == column['COLUMN_NAME'] }
         Column.new(
           table: table,
           column: column['COLUMN_NAME'],
@@ -38,7 +45,9 @@ class DbImportService
           default: column['COLUMN_DEFAULT'],
           key: column['COLUMN_KEY'],
           extra: column['EXTRA'],
-          ordinal_position: column['ORDINAL_POSITION']
+          ordinal_position: column['ORDINAL_POSITION'],
+          example: current_column.try(:example),
+          note: current_column.try(:note)
         )
       end
     end
