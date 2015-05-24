@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "tables", force: :cascade do |t|
     t.integer  "version_id",  limit: 4,     null: false
     t.string   "name",        limit: 255,   null: false
-    t.text     "description", limit: 65535, null: false
+    t.text     "description", limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end

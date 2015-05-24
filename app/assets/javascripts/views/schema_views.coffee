@@ -54,10 +54,7 @@ class @SchemaViews
     reorderColumns: true,
     columns: [
       { field: 'column', caption: 'Column', size: '150px', sortable: false }
-      { field: 'column_type', caption: 'Type', size: '100px', sortable: false }
-      { field: 'length', caption: 'Length', size: '60px', sortable: false }
-      { field: 'signed', caption: 'Signed', size: '60px', sortable: false, attr: 'align=center' }
-      { field: 'binary', caption: 'Binary', size: '60px', sortable: false, attr: 'align=center' }
+      { field: 'column_type', caption: 'Type', size: '200px', sortable: false }
       { field: 'not_null', caption: 'NotNull', size: '60px', sortable: false, attr: 'align=center' }
       { field: 'default', caption: 'Default', size: '100px', sortable: false }
       { field: 'key', caption: 'Key', size: '50px', sortable: false, attr: 'align=center' }

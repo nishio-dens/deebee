@@ -34,7 +34,7 @@ class DbImportService
         description: current_table.try(:description)
       )
 
-      current_columns = if current_table.present? ? current_table.columns : []
+      current_columns = current_table.present? ? current_table.columns : []
       cc.map do |column|
         current_column = current_columns.find { |v| v.column == column['COLUMN_NAME'] }
         Column.new(
