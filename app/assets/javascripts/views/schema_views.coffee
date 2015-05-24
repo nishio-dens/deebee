@@ -51,6 +51,7 @@ class @SchemaViews
     name: 'schemaGrid',
     autoLoad: true,
     method: 'GET',
+    reorderColumns: true,
     columns: [
       { field: 'column', caption: 'Column', size: '150px', sortable: false }
       { field: 'column_type', caption: 'Type', size: '100px', sortable: false }
