@@ -48,7 +48,7 @@ create_table :columns, collate: :utf8_bin do |t|
   t.int :id, primary_key: true, extra: :auto_increment
   t.int :table_id
   t.varchar :column
-  t.varchar :type
+  t.varchar :column_type
   t.int :length, null: true
   t.varchar :signed, limit: 1, default: ''
   t.varchar :binary, limit: 1, default: ''
