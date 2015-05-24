@@ -22,7 +22,7 @@ class @SchemaViews
   sidebarTableListing:
     name: 'sidebarTableListing',
     nodes: [
-      { id: 'tables', text: 'Tables', group: true, expanded: true, nodes: []}
+      { id: 'tables', text: 'Tables', group: true, expanded: true, nodes: [], count: 30}
     ],
     onClick: (event) ->
       projectId = gon.project_id

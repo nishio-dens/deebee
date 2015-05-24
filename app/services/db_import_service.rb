@@ -26,7 +26,7 @@ class DbImportService
     )
     current_version = Version.where(project_id: @project.id).order(id: :desc).limit(1).first()
 
-    columns = information_schema_columns.group_by { |v| v['TABLE_SCHEMA'] }.map do |table_name, cc|
+    columns = information_schema_columns.group_by { |v| v['TABLE_NAME'] }.map do |table_name, cc|
       current_table = current_version.tables.find_by(name: table_name)
       table = Table.new(
         version: version,

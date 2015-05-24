@@ -16,7 +16,7 @@ class Api::TablesController < ApplicationController
     table = @version.tables.find(params[:id])
     columns = table
       .columns
-      .order(:id)
+      .order(:ordinal_position)
       .map { |record| record.as_json.merge(recid: record.id) }
       .map { |record| set_related_links(record, @version) }
     data = {
