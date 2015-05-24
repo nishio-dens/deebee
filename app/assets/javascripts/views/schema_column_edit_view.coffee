@@ -14,9 +14,10 @@ class @SchemaColumnEditView
       reset: ->
         @clear()
 
-  init: ->
+  constructor: ->
     $().w2form(@columnEditForm)
 
+  exec: ->
     $().w2popup('open', {
        title   : 'Edit Column Info',
        body    : '<div id="form" style="width: 100%; height: 100%;"></div>',

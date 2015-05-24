@@ -156,6 +156,7 @@ class @SchemaViews
     )
 
   setupSchemaGridEditForm: ->
+    schemaColumnEditForm = new SchemaColumnEditView()
     w2ui.schemaGrid.on('dblClick', (event) ->
-      console.log(event)
+      schemaColumnEditForm.exec()
     )
