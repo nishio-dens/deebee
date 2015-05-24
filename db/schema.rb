@@ -13,6 +13,28 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
+  create_table "columns", force: :cascade do |t|
+    t.integer  "table_id",   limit: 4,                  null: false
+    t.string   "column",     limit: 255,                null: false
+    t.string   "type",       limit: 255,                null: false
+    t.integer  "length",     limit: 4
+    t.string   "signed",     limit: 1,     default: "", null: false
+    t.string   "binary",     limit: 1,     default: "", null: false
+    t.string   "not_null",   limit: 1,     default: "", null: false
+    t.string   "default",    limit: 255
+    t.string   "key",        limit: 255
+    t.text     "example",    limit: 65535
+    t.string   "related",    limit: 255
+    t.text     "comment",    limit: 65535
+    t.text     "note",       limit: 65535
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "created_by", limit: 4
+    t.integer  "updated_by", limit: 4
+  end
+
+  add_index "columns", ["table_id"], name: "columns_table_id_fk", using: :btree
+
   create_table "projects", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
     t.datetime "created_at",             null: false
@@ -54,6 +76,7 @@ ActiveRecord::Schema.define(version: 0) do
 
   add_index "versions", ["project_id"], name: "versions_project_id_fk", using: :btree
 
+  add_foreign_key "columns", "tables", name: "columns_table_id_fk"
   add_foreign_key "tables", "versions", name: "tables_version_id_fk"
   add_foreign_key "versions", "projects", name: "versions_project_id_fk"
 end

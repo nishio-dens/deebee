@@ -44,6 +44,29 @@ create_table :tables, collate: :utf8_bin do |t|
   t.foreign_key :version_id, reference: :versions, reference_column: :id
 end
 
+create_table :columns, collate: :utf8_bin do |t|
+  t.int :id, primary_key: true, extra: :auto_increment
+  t.int :table_id
+  t.varchar :column
+  t.varchar :type
+  t.int :length, null: true
+  t.varchar :signed, limit: 1, default: ''
+  t.varchar :binary, limit: 1, default: ''
+  t.varchar :not_null, limit: 1, default: ''
+  t.varchar :default, null: true
+  t.varchar :key, null: true
+  t.text :example, null: true
+  t.varchar :related, null: true
+  t.text :comment, null: true
+  t.text :note, null: true
+  t.datetime :created_at
+  t.datetime :updated_at
+  t.int :created_by, null: true
+  t.int :updated_by, null: true
+
+  t.foreign_key :table_id, reference: :tables, reference_column: :id
+end
+
 create_table :schema_migrations, default_charset: "utf8mb4", collate: "utf8mb4_unicode_ci", comment: "" do |t|
   t.varchar "version", limit: 191
 
