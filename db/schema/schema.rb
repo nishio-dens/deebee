@@ -73,7 +73,7 @@ create_table :connection_settings, collate: :utf8_bin do |t|
   t.varchar :adapter
   t.varchar :database
   t.varchar :username
-  t.text :password
+  t.text :encrypted_password
   t.text :host
   t.datetime :created_at
   t.datetime :updated_at

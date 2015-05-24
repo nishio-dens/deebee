@@ -36,14 +36,14 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "columns", ["table_id"], name: "columns_table_id_fk", using: :btree
 
   create_table "connection_settings", force: :cascade do |t|
-    t.integer  "project_id", limit: 4,     null: false
-    t.string   "adapter",    limit: 255,   null: false
-    t.string   "database",   limit: 255,   null: false
-    t.string   "username",   limit: 255,   null: false
-    t.text     "password",   limit: 65535, null: false
-    t.text     "host",       limit: 65535, null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "project_id",         limit: 4,     null: false
+    t.string   "adapter",            limit: 255,   null: false
+    t.string   "database",           limit: 255,   null: false
+    t.string   "username",           limit: 255,   null: false
+    t.text     "encrypted_password", limit: 65535, null: false
+    t.text     "host",               limit: 65535, null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   add_index "connection_settings", ["project_id"], name: "connection_settings_project_id_fk", using: :btree
