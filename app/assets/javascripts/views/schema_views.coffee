@@ -1,3 +1,5 @@
+#= require views/schema_column_edit_view
+
 class @SchemaViews
   pstyle:
     'border: 1px solid #dfdfdf'
@@ -155,5 +157,5 @@ class @SchemaViews
 
   setupSchemaGridEditForm: ->
     w2ui.schemaGrid.on('dblClick', (event) ->
-      console.log(event.recid)
+      console.log(event)
     )
