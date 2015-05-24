@@ -33,14 +33,14 @@ class Api::TablesController < ApplicationController
   end
 
   def set_related_links(record, version)
-    return record unless record['related']
-    related_table = version.tables.find_by(name: record['related'])
+    return record unless record['relation']
+    related_table = version.tables.find_by(name: record['relation'])
     if related_table
-      record['related'] =
+      record['relation'] =
         "<a href='#' class='relationLink' data-relation-id='#{related_table.id}'>" +
         "<i class='fa fa-caret-right'></i> #{related_table.name}</a>"
     else
-      record['related'] = 'INVALID'
+      record['relation'] = 'INVALID'
     end
     record
   end

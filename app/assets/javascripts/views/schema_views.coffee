@@ -71,7 +71,7 @@ class @SchemaViews
       { field: 'updated_at', caption: 'UpdatedAt', size: '200px', sortable: false }
       { field: 'created_by', caption: 'CreatedBy', size: '200px', sortable: false }
       { field: 'updated_by', caption: 'updatedBy', size: '200px', sortable: false }
-    ]
+    ],
 
   # Functions
   constructor: ->
@@ -132,6 +132,7 @@ class @SchemaViews
     @setupProjectHook()
     @setupVersionHook()
     @setupRelationHook()
+    @setupSchemaGridEditForm()
 
   setupProjectHook: ->
     $(document.body).delegate('#projects', 'change', (v) ->
@@ -150,4 +151,9 @@ class @SchemaViews
     $(document.body).delegate('.relationLink', 'click', (v) ->
       id = $(@).data('relation-id')
       $('[name=sidebarTableListing]').find('#node_' + id).click()
+    )
+
+  setupSchemaGridEditForm: ->
+    w2ui.schemaGrid.on('dblClick', (event) ->
+      console.log(event.recid)
     )

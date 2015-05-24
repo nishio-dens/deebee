@@ -60,7 +60,7 @@ class DbImportService
           default: column['COLUMN_DEFAULT'],
           key: column['COLUMN_KEY'],
           extra: column['EXTRA'],
-          relation: column['REFERENCED_TABLE_SCHEMA'],
+          relation: column['REFERENCED_TABLE_NAME'],
           ordinal_position: column['ORDINAL_POSITION'],
           example: current_column.try(:example),
           note: current_column.try(:note)
@@ -74,8 +74,13 @@ class DbImportService
 
   def select_mysql_columns(database_name)
     <<EOS
-    SELECT * FROM COLUMNS C
-    WHERE C.TABLE_SCHEMA = "#{database_name}"
+    SELECT DISTINCT C.*, US.REFERENCED_TABLE_NAME FROM COLUMNS C
+    LEFT OUTER JOIN KEY_COLUMN_USAGE US
+    ON C.TABLE_SCHEMA = US.TABLE_SCHEMA
+      AND C.TABLE_NAME = US.TABLE_NAME
+      AND C.COLUMN_NAME = US.COLUMN_NAME
+
+    WHERE c.TABLE_SCHEMA = '#{database_name}'
     ORDER BY C.TABLE_NAME, C.ORDINAL_POSITION
 EOS
   end
