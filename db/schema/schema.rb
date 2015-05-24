@@ -67,6 +67,21 @@ create_table :columns, collate: :utf8_bin do |t|
   t.foreign_key :table_id, reference: :tables, reference_column: :id
 end
 
+create_table :connection_settings, collate: :utf8_bin do |t|
+  t.int :id, primary_key: true, extra: :auto_increment
+  t.int :project_id
+  t.varchar :adapter
+  t.varchar :database
+  t.varchar :username
+  t.text :password
+  t.text :host
+  t.datetime :created_at
+  t.datetime :updated_at
+
+  t.foreign_key :project_id, reference: :projects, reference_column: :id
+end
+
+
 create_table :schema_migrations, default_charset: "utf8mb4", collate: "utf8mb4_unicode_ci", comment: "" do |t|
   t.varchar "version", limit: 191
 
