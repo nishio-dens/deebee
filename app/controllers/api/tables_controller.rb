@@ -18,7 +18,8 @@ class Api::TablesController < ApplicationController
       .columns
       .order(:ordinal_position)
       .map { |record| record.as_json.merge(recid: record.id) }
-      .map { |record| set_related_links(record, @version) }
+      .map { |record| set_relation_links(record, @version) }
+      .map { |record| set_application_relation_links(record, @version) }
     data = {
       total: columns.count,
       records: columns
@@ -32,16 +33,26 @@ class Api::TablesController < ApplicationController
     @version = Version.find_by(project_id: params[:project_id], id: params[:version])
   end
 
-  def set_related_links(record, version)
+  def set_relation_links(record, version)
     return record unless record['relation']
     related_table = version.tables.find_by(name: record['relation'])
     if related_table
-      record['relation'] =
-        "<a href='#' class='relationLink' data-relation-id='#{related_table.id}'>" +
-        "<i class='fa fa-caret-right'></i> #{related_table.name}</a>"
-    else
-      record['relation'] = 'INVALID'
+      record['relation'] = generate_table_links(related_table.id, related_table.name)
     end
     record
+  end
+
+  def set_application_relation_links(record, version)
+    return record unless record['application_relation']
+    related_table = version.tables.find_by(name: record['application_relation'])
+    if related_table
+      record['application_relation'] = generate_table_links(related_table.id, related_table.name)
+    end
+    record
+  end
+
+  def generate_table_links(id, table_name)
+    "<a href='#' class='relationLink' data-relation-id='#{id}'>" +
+    "<i class='fa fa-caret-right'></i> #{table_name}</a>"
   end
 end

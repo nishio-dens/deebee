@@ -22,7 +22,9 @@ class @SchemaColumnEditView
           }).done(successCallback)
 
       reset: ->
+        id = @record.id
         @clear()
+        @record.id = id
 
   constructor: ->
     $().w2form(@columnEditForm)
@@ -44,5 +46,12 @@ class @SchemaColumnEditView
          event.onComplete = ->
            w2ui['columnEditForm'].clear()
            w2ui['columnEditForm'].record = record
+
+           applicationRelation = w2ui['columnEditForm'].record['application_relation']
+           if applicationRelation
+             text = $(applicationRelation).text().trim()
+             if text
+               w2ui['columnEditForm'].record['application_relation'] = text
+
            $('#w2ui-popup #form').w2render('columnEditForm')
     })

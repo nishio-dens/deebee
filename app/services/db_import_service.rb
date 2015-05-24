@@ -41,7 +41,8 @@ class DbImportService
         length = if ['decimal', 'real'].any? { |v| column['COLUMN_TYPE'].include? v }
                    "(#{column['NUMERIC_PRECISION']},#{column['NUMERIC_SCALE']})"
                  else
-                   column['CHARACTER_MAXIMUM_LENGTH']
+                   column['CHARACTER_MAXIMUM_LENGTH'] ||
+                     column['COLUMN_TYPE'].scan(/\((\d+)\)/).flatten.first
                  end
         unsigned = if column['COLUMN_TYPE'].include? "unsigned"
                      "Y"
