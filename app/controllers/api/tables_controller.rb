@@ -13,7 +13,9 @@ class Api::TablesController < ApplicationController
   end
 
   def show
-    @table = @version.tables.find(params[:id])
+    table = @version.tables.find(params[:id])
+    columns = table.columns.order(:id)
+    render json: columns
   end
 
   private
