@@ -54,12 +54,16 @@ class @SchemaViews
     reorderColumns: true,
     columns: [
       { field: 'column', caption: 'Column', size: '150px', sortable: false }
-      { field: 'column_type', caption: 'Type', size: '200px', sortable: false }
+      { field: 'column_type', caption: 'Type', size: '120px', sortable: false }
       { field: 'not_null', caption: 'NotNull', size: '60px', sortable: false, attr: 'align=center' }
+      { field: 'length', caption: 'Length', size: '60px', sortable: false, attr: 'align=center' }
+      { field: 'unsigned', caption: 'Unsigned', size: '80px', sortable: false, attr: 'align=center' }
       { field: 'default', caption: 'Default', size: '100px', sortable: false }
       { field: 'key', caption: 'Key', size: '50px', sortable: false, attr: 'align=center' }
       { field: 'example', caption: 'Example', size: '130px', sortable: false }
       { field: 'related', caption: 'Related', size: '150px', sortable: false }
+      { field: 'character_set_name', caption: 'Charset', size: '100px', sortable: false }
+      { field: 'collation_name', caption: 'Collation', size: '100px', sortable: false }
       { field: 'comment', caption: 'comment', size: '200px', sortable: false }
       { field: 'note', caption: 'note', size: '200px', sortable: false }
       { field: 'created_at', caption: 'CreatedAt', size: '200px', sortable: false }

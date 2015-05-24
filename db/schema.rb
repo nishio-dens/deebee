@@ -14,26 +14,27 @@
 ActiveRecord::Schema.define(version: 0) do
 
   create_table "columns", force: :cascade do |t|
-    t.integer  "table_id",           limit: 4,                  null: false
-    t.string   "column",             limit: 255,                null: false
-    t.string   "column_type",        limit: 255,                null: false
-    t.string   "not_null",           limit: 1,     default: "", null: false
-    t.string   "length",             limit: 255,   default: ""
-    t.string   "unsigned",           limit: 1,     default: "", null: false
-    t.string   "character_set_name", limit: 30,    default: "", null: false
-    t.string   "collation_name",     limit: 30,    default: "", null: false
-    t.string   "default",            limit: 255
-    t.string   "key",                limit: 255
-    t.string   "extra",              limit: 255,   default: "", null: false
-    t.text     "example",            limit: 65535
-    t.string   "related",            limit: 255
-    t.text     "comment",            limit: 65535
-    t.text     "note",               limit: 65535
-    t.integer  "ordinal_position",   limit: 4,                  null: false
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
-    t.integer  "created_by",         limit: 4
-    t.integer  "updated_by",         limit: 4
+    t.integer  "table_id",             limit: 4,                  null: false
+    t.string   "column",               limit: 255,                null: false
+    t.string   "column_type",          limit: 255,                null: false
+    t.string   "not_null",             limit: 1,     default: "", null: false
+    t.string   "length",               limit: 255,   default: ""
+    t.string   "unsigned",             limit: 1,     default: "", null: false
+    t.string   "character_set_name",   limit: 30,    default: "", null: false
+    t.string   "collation_name",       limit: 30,    default: "", null: false
+    t.string   "default",              limit: 255
+    t.string   "key",                  limit: 255
+    t.string   "extra",                limit: 255,   default: "", null: false
+    t.text     "example",              limit: 65535
+    t.string   "relation",             limit: 255
+    t.string   "application_relation", limit: 255
+    t.text     "comment",              limit: 65535
+    t.text     "note",                 limit: 65535
+    t.integer  "ordinal_position",     limit: 4,                  null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.integer  "created_by",           limit: 4
+    t.integer  "updated_by",           limit: 4
   end
 
   add_index "columns", ["table_id"], name: "columns_table_id_fk", using: :btree

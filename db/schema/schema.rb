@@ -58,7 +58,8 @@ create_table :columns, collate: :utf8_bin do |t|
   t.varchar :key, null: true
   t.varchar :extra, default: ''
   t.text :example, null: true
-  t.varchar :related, null: true
+  t.varchar :relation, null: true
+  t.varchar :application_relation, null: true
   t.text :comment, null: true
   t.text :note, null: true
   t.int :ordinal_position

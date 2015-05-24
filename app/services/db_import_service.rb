@@ -12,7 +12,8 @@ class DbImportService
 
   def import(description = "")
     Version.transaction do
-      create_snapshot(description)
+      snapshots = create_snapshot(description)
+      snapshots.each(&:save)
     end
   end
 
@@ -37,14 +38,29 @@ class DbImportService
       current_columns = current_table.present? ? current_table.columns : []
       cc.map do |column|
         current_column = current_columns.find { |v| v.column == column['COLUMN_NAME'] }
+        length = if ['decimal', 'real'].any? { |v| column['COLUMN_TYPE'].include? v }
+                   "(#{column['NUMERIC_PRECISION']},#{column['NUMERIC_SCALE']})"
+                 else
+                   column['CHARACTER_MAXIMUM_LENGTH']
+                 end
+        unsigned = if column['COLUMN_TYPE'].include? "unsigned"
+                     "Y"
+                   else
+                     ""
+                   end
         Column.new(
           table: table,
           column: column['COLUMN_NAME'],
-          column_type: column['COLUMN_TYPE'],
+          column_type: column['DATA_TYPE'],
           not_null: column['IS_NULLABLE'] == 'YES'? 'Y' : 'N',
+          length: length,
+          unsigned: unsigned,
+          character_set_name: column['CHARACTER_SET_NAME'] || "",
+          collation_name: column['COLLATION_NAME'] || "",
           default: column['COLUMN_DEFAULT'],
           key: column['COLUMN_KEY'],
           extra: column['EXTRA'],
+          relation: column['REFERENCED_TABLE_SCHEMA'],
           ordinal_position: column['ORDINAL_POSITION'],
           example: current_column.try(:example),
           note: current_column.try(:note)
