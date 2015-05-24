@@ -11,5 +11,6 @@
 #
 
 class Table < ActiveRecord::Base
+  belongs_to :version
   has_many :columns
 end
