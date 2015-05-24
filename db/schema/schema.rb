@@ -50,6 +50,10 @@ create_table :columns, collate: :utf8_bin do |t|
   t.varchar :column
   t.varchar :column_type
   t.varchar :not_null, limit: 1, default: ''
+  t.varchar :length, null: true, default: ''
+  t.varchar :unsigned, limit: 1, default: ''
+  t.varchar :character_set_name, limit: 30, default: ''
+  t.varchar :collation_name, limit: 30, default: ''
   t.varchar :default, null: true
   t.varchar :key, null: true
   t.varchar :extra, default: ''
