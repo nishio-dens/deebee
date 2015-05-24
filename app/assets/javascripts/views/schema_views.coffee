@@ -53,18 +53,17 @@ class @SchemaViews
       { field: 'length', caption: 'Length', size: '60px', sortable: true }
       { field: 'signed', caption: 'Signed', size: '60px', sortable: true }
       { field: 'binary', caption: 'Binary', size: '60px', sortable: true }
-      { field: 'notNull', caption: 'NotNull', size: '60px', sortable: true }
+      { field: 'not_null', caption: 'NotNull', size: '60px', sortable: true }
       { field: 'default', caption: 'Default', size: '100px', sortable: true }
       { field: 'key', caption: 'Key', size: '50px', sortable: true }
       { field: 'example', caption: 'Example', size: '130px', sortable: true }
       { field: 'related', caption: 'Related', size: '130px', sortable: true }
       { field: 'comment', caption: 'comment', size: '200px', sortable: true }
       { field: 'note', caption: 'note', size: '200px', sortable: true }
-      { field: 'version', caption: 'Version', size: '60px', sortable: true }
-      { field: 'createdAt', caption: 'CreatedAt', size: '200px', sortable: true }
-      { field: 'updatedAt', caption: 'UpdatedAt', size: '200px', sortable: true }
-      { field: 'createdBy', caption: 'CreatedBy', size: '200px', sortable: true }
-      { field: 'updatedBy', caption: 'updatedBy', size: '200px', sortable: true }
+      { field: 'created_at', caption: 'CreatedAt', size: '200px', sortable: true }
+      { field: 'updated_at', caption: 'UpdatedAt', size: '200px', sortable: true }
+      { field: 'created_by', caption: 'CreatedBy', size: '200px', sortable: true }
+      { field: 'updated_by', caption: 'updatedBy', size: '200px', sortable: true }
     ]
 
   # Functions
