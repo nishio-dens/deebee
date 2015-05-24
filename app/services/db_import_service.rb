@@ -38,6 +38,7 @@ class DbImportService
           default: column['COLUMN_DEFAULT'],
           key: column['COLUMN_KEY'],
           extra: column['EXTRA'],
+          ordinal_position: column['ORDINAL_POSITION']
         )
       end
     end
