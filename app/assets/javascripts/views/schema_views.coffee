@@ -61,7 +61,8 @@ class @SchemaViews
       { field: 'default', caption: 'Default', size: '100px', sortable: false }
       { field: 'key', caption: 'Key', size: '50px', sortable: false, attr: 'align=center' }
       { field: 'example', caption: 'Example', size: '130px', sortable: false }
-      { field: 'related', caption: 'Related', size: '150px', sortable: false }
+      { field: 'relation', caption: 'Relation', size: '150px', sortable: false }
+      { field: 'application_relation', caption: 'AppRelation', size: '150px', sortable: false }
       { field: 'character_set_name', caption: 'Charset', size: '100px', sortable: false }
       { field: 'collation_name', caption: 'Collation', size: '100px', sortable: false }
       { field: 'comment', caption: 'comment', size: '200px', sortable: false }
