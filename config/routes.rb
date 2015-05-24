@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :projects, only: [] do
       resources :tables, only: [:index, :show]
+      resources :columns, only: [:update]
     end
   end
 end

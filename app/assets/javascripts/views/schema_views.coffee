@@ -158,5 +158,5 @@ class @SchemaViews
   setupSchemaGridEditForm: ->
     schemaColumnEditForm = new SchemaColumnEditView()
     w2ui.schemaGrid.on('dblClick', (event) ->
-      schemaColumnEditForm.exec()
+      schemaColumnEditForm.exec(@get(event.recid))
     )
