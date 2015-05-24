@@ -55,13 +55,13 @@ class @SchemaViews
       { field: 'column', caption: 'Column', size: '150px', sortable: false }
       { field: 'column_type', caption: 'Type', size: '100px', sortable: false }
       { field: 'length', caption: 'Length', size: '60px', sortable: false }
-      { field: 'signed', caption: 'Signed', size: '60px', sortable: false }
-      { field: 'binary', caption: 'Binary', size: '60px', sortable: false }
-      { field: 'not_null', caption: 'NotNull', size: '60px', sortable: false }
+      { field: 'signed', caption: 'Signed', size: '60px', sortable: false, attr: 'align=center' }
+      { field: 'binary', caption: 'Binary', size: '60px', sortable: false, attr: 'align=center' }
+      { field: 'not_null', caption: 'NotNull', size: '60px', sortable: false, attr: 'align=center' }
       { field: 'default', caption: 'Default', size: '100px', sortable: false }
-      { field: 'key', caption: 'Key', size: '50px', sortable: false }
+      { field: 'key', caption: 'Key', size: '50px', sortable: false, attr: 'align=center' }
       { field: 'example', caption: 'Example', size: '130px', sortable: false }
-      { field: 'related', caption: 'Related', size: '130px', sortable: false }
+      { field: 'related', caption: 'Related', size: '150px', sortable: false }
       { field: 'comment', caption: 'comment', size: '200px', sortable: false }
       { field: 'note', caption: 'note', size: '200px', sortable: false }
       { field: 'created_at', caption: 'CreatedAt', size: '200px', sortable: false }
@@ -128,6 +128,7 @@ class @SchemaViews
   setupHook: ->
     @setupProjectHook()
     @setupVersionHook()
+    @setupRelationHook()
 
   setupProjectHook: ->
     $(document.body).delegate('#projects', 'change', (v) ->
@@ -140,4 +141,10 @@ class @SchemaViews
     $(document.body).delegate('#versions', 'change', (v) =>
       versionId = $(v.currentTarget).val()
       @loadTables(projectId, versionId)
+    )
+
+  setupRelationHook: ->
+    $(document.body).delegate('.relationLink', 'click', (v) ->
+      id = $(@).data('relation-id')
+      $('[name=sidebarTableListing]').find('#node_' + id).click()
     )
