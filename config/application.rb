@@ -13,7 +13,7 @@ module Trans1
     config.action_view.field_error_proc = Proc.new do |html_tag, _|
       "<div class=\"has-error\">#{html_tag}</div>".html_safe
     end
-    config.autoload_paths += Dir["#{config.root}/app/models/validators"]
+    config.autoload_paths += Dir["#{config.root}/app/models/validators", "#{config.root}/app/services"]
 
     config.generators do |g|
       g.test_framework nil

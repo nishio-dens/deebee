@@ -70,7 +70,6 @@ end
 create_table :connection_settings, collate: :utf8_bin do |t|
   t.int :id, primary_key: true, extra: :auto_increment
   t.int :project_id
-  t.varchar :adapter
   t.varchar :database
   t.varchar :username
   t.text :encrypted_password

@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "connection_settings", force: :cascade do |t|
     t.integer  "project_id",         limit: 4,     null: false
-    t.string   "adapter",            limit: 255,   null: false
     t.string   "database",           limit: 255,   null: false
     t.string   "username",           limit: 255,   null: false
     t.text     "encrypted_password", limit: 65535, null: false
