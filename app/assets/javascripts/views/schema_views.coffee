@@ -25,7 +25,12 @@ class @SchemaViews
       { id: 'tables', text: 'Tables', group: true, expanded: true, nodes: []}
     ],
     onClick: (event) ->
-      alert(event.target)
+      projectId = gon.project_id
+      tableId = event.target
+      versionId = $('#versions').val()
+      url = "/api/projects/#{projectId}/tables/#{tableId}?version=#{versionId}"
+
+      w2ui.schemaGrid.load(url)
 
   sidebarDivisionListing:
     name: 'sidebarDivisionListing',
@@ -45,25 +50,24 @@ class @SchemaViews
   schemaGrid:
     name: 'schemaGrid',
     autoLoad: true,
-    # url: '/',
-    # method: 'GET',
+    method: 'GET',
     columns: [
-      { field: 'column', caption: 'Column', size: '150px', sortable: true }
-      { field: 'type', caption: 'Type', size: '100px', sortable: true }
-      { field: 'length', caption: 'Length', size: '60px', sortable: true }
-      { field: 'signed', caption: 'Signed', size: '60px', sortable: true }
-      { field: 'binary', caption: 'Binary', size: '60px', sortable: true }
-      { field: 'not_null', caption: 'NotNull', size: '60px', sortable: true }
-      { field: 'default', caption: 'Default', size: '100px', sortable: true }
-      { field: 'key', caption: 'Key', size: '50px', sortable: true }
-      { field: 'example', caption: 'Example', size: '130px', sortable: true }
-      { field: 'related', caption: 'Related', size: '130px', sortable: true }
-      { field: 'comment', caption: 'comment', size: '200px', sortable: true }
-      { field: 'note', caption: 'note', size: '200px', sortable: true }
-      { field: 'created_at', caption: 'CreatedAt', size: '200px', sortable: true }
-      { field: 'updated_at', caption: 'UpdatedAt', size: '200px', sortable: true }
-      { field: 'created_by', caption: 'CreatedBy', size: '200px', sortable: true }
-      { field: 'updated_by', caption: 'updatedBy', size: '200px', sortable: true }
+      { field: 'column', caption: 'Column', size: '150px', sortable: false }
+      { field: 'column_type', caption: 'Type', size: '100px', sortable: false }
+      { field: 'length', caption: 'Length', size: '60px', sortable: false }
+      { field: 'signed', caption: 'Signed', size: '60px', sortable: false }
+      { field: 'binary', caption: 'Binary', size: '60px', sortable: false }
+      { field: 'not_null', caption: 'NotNull', size: '60px', sortable: false }
+      { field: 'default', caption: 'Default', size: '100px', sortable: false }
+      { field: 'key', caption: 'Key', size: '50px', sortable: false }
+      { field: 'example', caption: 'Example', size: '130px', sortable: false }
+      { field: 'related', caption: 'Related', size: '130px', sortable: false }
+      { field: 'comment', caption: 'comment', size: '200px', sortable: false }
+      { field: 'note', caption: 'note', size: '200px', sortable: false }
+      { field: 'created_at', caption: 'CreatedAt', size: '200px', sortable: false }
+      { field: 'updated_at', caption: 'UpdatedAt', size: '200px', sortable: false }
+      { field: 'created_by', caption: 'CreatedBy', size: '200px', sortable: false }
+      { field: 'updated_by', caption: 'updatedBy', size: '200px', sortable: false }
     ]
 
   # Functions

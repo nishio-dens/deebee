@@ -14,8 +14,15 @@ class Api::TablesController < ApplicationController
 
   def show
     table = @version.tables.find(params[:id])
-    columns = table.columns.order(:id)
-    render json: columns
+    columns = table
+      .columns
+      .order(:id)
+      .map { |record| record.as_json.merge(recid: record.id) }
+    data = {
+      total: columns.count,
+      records: columns
+    }
+    render json: data
   end
 
   private
