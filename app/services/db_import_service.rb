@@ -53,7 +53,7 @@ class DbImportService
           table: table,
           column: column['COLUMN_NAME'],
           column_type: column['DATA_TYPE'],
-          not_null: column['IS_NULLABLE'] == 'YES'? 'Y' : 'N',
+          not_null: column['IS_NULLABLE'] == 'YES'? '' : 'Y',
           length: length,
           unsigned: unsigned,
           character_set_name: column['CHARACTER_SET_NAME'] || "",
