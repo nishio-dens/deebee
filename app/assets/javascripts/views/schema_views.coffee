@@ -40,7 +40,6 @@ class @SchemaViews
       { id: 'divisions', text: 'Divisions', group: true, expanded: true, nodes: []}
     ],
     onClick: (event) ->
-      alert(event.target)
 
   mainContentLayout:
     name: 'mainContentLayout',
