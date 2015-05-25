@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :projects, only: [] do
       resources :tables, only: [:index, :show]
       resources :columns, only: [:update]
+      resources :divisions, only: [:index]
     end
   end
 end

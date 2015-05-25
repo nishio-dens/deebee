@@ -118,9 +118,17 @@ class @SchemaViews
     _.each(ids, (v) -> w2ui.sidebarDivisionListing.remove(v))
 
   loadTables: (projectId, versionId) ->
-    url = "/api/projects/#{projectId}/tables"
-    if versionId
-      url = url + "?version=#{versionId}"
+    url = "/api/projects/#{projectId}/tables?version=#{versionId}"
+
+    @removeSidebarTableData()
+
+    $.get(url, (data) =>
+      if data.length
+        w2ui.sidebarTableListing.insert('tables', null, data)
+    )
+
+  loadDivisions: (projectId, versionId) ->
+    url = "/api/projects/#{projectId}/divisions?version=#{versionId}"
 
     @removeSidebarTableData()
 
