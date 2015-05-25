@@ -73,7 +73,34 @@ class @SchemaViews
       { field: 'updated_at', caption: 'UpdatedAt', size: '200px', sortable: false }
       { field: 'created_by', caption: 'CreatedBy', size: '200px', sortable: false }
       { field: 'updated_by', caption: 'updatedBy', size: '200px', sortable: false }
-    ],
+    ]
+
+  divisionGrid:
+    name: 'divisionGrid',
+    autoLoad: true,
+    method: 'GET',
+    reorderColumns: true,
+    columns: [
+      { field: 'column', caption: 'Column', size: '150px', sortable: false }
+      { field: 'column_type', caption: 'Type', size: '120px', sortable: false }
+      { field: 'not_null', caption: 'NotNull', size: '60px', sortable: false, attr: 'align=center' }
+      { field: 'length', caption: 'Length', size: '60px', sortable: false, attr: 'align=center' }
+      { field: 'unsigned', caption: 'Unsigned', size: '80px', sortable: false, attr: 'align=center' }
+      { field: 'default', caption: 'Default', size: '100px', sortable: false }
+      { field: 'key', caption: 'Key', size: '50px', sortable: false, attr: 'align=center' }
+      { field: 'relation', caption: 'Relation', size: '150px', sortable: false }
+      { field: 'application_relation', caption: 'App Level Relation', size: '150px', sortable: false }
+      { field: 'example', caption: 'Example', size: '130px', sortable: false }
+      { field: 'character_set_name', caption: 'Charset', size: '100px', sortable: false }
+      { field: 'collation_name', caption: 'Collation', size: '100px', sortable: false }
+      { field: 'comment', caption: 'comment', size: '200px', sortable: false }
+      { field: 'note', caption: 'note', size: '200px', sortable: false }
+      { field: 'created_at', caption: 'CreatedAt', size: '200px', sortable: false }
+      { field: 'updated_at', caption: 'UpdatedAt', size: '200px', sortable: false }
+      { field: 'created_by', caption: 'CreatedBy', size: '200px', sortable: false }
+      { field: 'updated_by', caption: 'updatedBy', size: '200px', sortable: false }
+    ]
+
 
   # Functions
   constructor: ->
@@ -108,6 +135,7 @@ class @SchemaViews
   # Load Logic
   fetchSidebarData: ->
     @loadTables(gon.project_id, gon.version_id)
+    @loadDivisions(gon.project_id, gon.version_id)
 
   removeSidebarTableData: ->
     ids = _.map(w2ui.sidebarTableListing.nodes[0].nodes, (v) -> "#{v.id}")
@@ -130,11 +158,11 @@ class @SchemaViews
   loadDivisions: (projectId, versionId) ->
     url = "/api/projects/#{projectId}/divisions?version=#{versionId}"
 
-    @removeSidebarTableData()
+    @removeSidebarDivisionData()
 
     $.get(url, (data) =>
       if data.length
-        w2ui.sidebarTableListing.insert('tables', null, data)
+        w2ui.sidebarDivisionListing.insert('divisions', null, data)
     )
 
   # Hooks

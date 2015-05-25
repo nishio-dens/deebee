@@ -12,4 +12,5 @@
 
 class Version < ActiveRecord::Base
   has_many :tables
+  has_many :divisions
 end
