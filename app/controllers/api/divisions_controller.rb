@@ -14,6 +14,15 @@ class Api::DivisionsController < ApplicationController
 
   def show
     division = @version.divisions.find(params[:id])
+    codes = division
+      .codes
+      .order(:code_value)
+      .map { |record| record.as_json.merge(recid: record.id) }
+    data = {
+      total: codes.count,
+      records: codes
+    }
+    render json: data
   end
 
   private

@@ -60,8 +60,7 @@ class @SchemaViews
       versionId = $('#versions').val()
       url = "/api/projects/#{projectId}/divisions/#{divisionId}?version=#{versionId}"
 
-      w2ui.schemaGrid.load(url)
-
+      w2ui.divisionGrid.load(url)
 
   mainContentLayout:
     name: 'mainContentLayout',
@@ -102,10 +101,10 @@ class @SchemaViews
     method: 'GET',
     reorderColumns: true,
     columns: [
-      { field: 'code', caption: 'Code', size: '150px', sortable: false }
-      { field: 'type_name', caption: 'Type', size: '150px', sortable: false }
+      { field: 'code_value', caption: 'Code', size: '150px', sortable: false }
       { field: 'name', caption: 'Name', size: '150px', sortable: false }
-      { field: 'note', caption: 'Note', size: '200px', sortable: false }
+      { field: 'alias', caption: 'Alias', size: '150px', sortable: false }
+      { field: 'comment', caption: 'Comment', size: '200px', sortable: false }
       { field: 'created_at', caption: 'CreatedAt', size: '200px', sortable: false }
       { field: 'updated_at', caption: 'UpdatedAt', size: '200px', sortable: false }
       { field: 'created_by', caption: 'CreatedBy', size: '200px', sortable: false }
