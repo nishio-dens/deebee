@@ -54,6 +54,15 @@ class @SchemaViews
         if tableSelected
           w2ui.sidebarTableListing.unselect(tableSelected)
 
+      projectId = gon.project_id
+      divisionId = event.target
+
+      versionId = $('#versions').val()
+      url = "/api/projects/#{projectId}/divisions/#{divisionId}?version=#{versionId}"
+
+      w2ui.schemaGrid.load(url)
+
+
   mainContentLayout:
     name: 'mainContentLayout',
     panels: [

@@ -12,6 +12,10 @@ class Api::DivisionsController < ApplicationController
     render json: data
   end
 
+  def show
+    division = @version.divisions.find(params[:id])
+  end
+
   private
 
   def set_version
