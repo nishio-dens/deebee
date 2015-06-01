@@ -94,6 +94,19 @@ create_table :divisions, collate: :utf8_bin do |t|
   t.foreign_key :version_id, reference: :versions, reference_column: :id
 end
 
+create_table :codes, collate: :utf8_bin do |t|
+  t.int :id, primary_key: true, extra: :auto_increment
+  t.int :division_id
+  t.varchar :code_value
+  t.varchar :name
+  t.varchar :alias
+  t.text :comment
+  t.datetime :created_at
+  t.datetime :updated_at
+
+  t.foreign_key :division_id, reference: :divisions, reference_column: :id
+end
+
 create_table :schema_migrations, default_charset: "utf8mb4", collate: "utf8mb4_unicode_ci", comment: "" do |t|
   t.varchar "version", limit: 191
 
