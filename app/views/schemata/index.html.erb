@@ -19,8 +19,17 @@
     <div class="box-body">
       <div class="col-xs-12">
         <div class="btn-group">
-          <%= link_to '#', class: "btn btn-default" do %>
-            Add Division
+          <%= link_to '#', id: "addingNewCodeTable", class: "btn btn-default" do %>
+            New Code Table
+          <% end %>
+          <%= link_to '#', class: "btn btn-default divisionControl hide" do %>
+            Remove Code Table
+          <% end %>
+          <%= link_to '#', class: "btn btn-default divisionControl hide" do %>
+            Add Code
+          <% end %>
+          <%= link_to '#', class: "btn btn-default divisionControl hide" do %>
+            Remove Code
           <% end %>
           <%= link_to '#', class: "btn btn-default" do %>
             Table Settings
@@ -58,6 +67,26 @@
   </div>
   <div class="w2ui-buttons">
     <button class="btn" name="reset">Reset</button>
+    <button class="btn" name="save">Save</button>
+  </div>
+</script>
+
+<script id="newDivisionViewForm" type="text/x-jsrender">
+  <div class="w2ui-page page-0">
+    <div class="w2ui-field">
+      <label>Code Table Name:</label>
+      <div>
+        <input name="name" type="text" maxlength="255" style="width: 100%"/>
+      </div>
+    </div>
+    <div class="w2ui-field">
+      <label>Description:</label>
+      <div>
+        <textarea name="description" type="text" style="width: 100%; height: 120px"/>
+      </div>
+    </div>
+  </div>
+  <div class="w2ui-buttons">
     <button class="btn" name="save">Save</button>
   </div>
 </script>

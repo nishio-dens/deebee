@@ -25,9 +25,24 @@ class Api::DivisionsController < ApplicationController
     render json: data
   end
 
+  def create
+    division = Division.new(version_id: @version.id)
+    division.attributes = new_attributes
+    division.save!
+    render json: {
+      id: division.id.to_s,
+      text: division.name,
+      img: 'icon-page'
+    }
+  end
+
   private
 
   def set_version
     @version = Version.find_by(project_id: params[:project_id], id: params[:version])
+  end
+
+  def new_attributes
+    params.required(:record).permit(:name, :description)
   end
 end

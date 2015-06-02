@@ -27,19 +27,10 @@ class @SchemaViews
       { id: 'tables', text: 'Tables', group: true, expanded: true, nodes: [], count: 30}
     ],
     onClick: (event) ->
-      if w2ui.mainContentLayout.content('main').name != 'schemaGrid'
-        w2ui.mainContentLayout.content('main', w2ui.schemaGrid)
-
-        divisionSelected = w2ui.sidebarDivisionListing.selected
-        if divisionSelected
-          w2ui.sidebarDivisionListing.unselect(divisionSelected)
-
-      projectId = gon.project_id
-      tableId = event.target
+      SchemaViews.unfocusDivisionListing()
       versionId = $('#versions').val()
-      url = "/api/projects/#{projectId}/tables/#{tableId}?version=#{versionId}"
-
-      w2ui.schemaGrid.load(url)
+      SchemaViews.loadTableData(gon.project_id, event.target, versionId)
+      SchemaViews.hideDivisionControl()
 
   sidebarDivisionListing:
     name: 'sidebarDivisionListing',
@@ -47,20 +38,10 @@ class @SchemaViews
       { id: 'divisions', text: 'Codes', group: true, expanded: true, nodes: []}
     ],
     onClick: (event) ->
-      if w2ui.mainContentLayout.content('main').name != 'divisionGrid'
-        w2ui.mainContentLayout.content('main', w2ui.divisionGrid)
-
-        tableSelected = w2ui.sidebarTableListing.selected
-        if tableSelected
-          w2ui.sidebarTableListing.unselect(tableSelected)
-
-      projectId = gon.project_id
-      divisionId = event.target
-
+      SchemaViews.unfocusTableListing()
       versionId = $('#versions').val()
-      url = "/api/projects/#{projectId}/divisions/#{divisionId}?version=#{versionId}"
-
-      w2ui.divisionGrid.load(url)
+      SchemaViews.loadDivisionData(gon.project_id, event.target, versionId)
+      SchemaViews.showDivisionControl()
 
   mainContentLayout:
     name: 'mainContentLayout',
@@ -110,6 +91,37 @@ class @SchemaViews
       { field: 'created_by', caption: 'CreatedBy', size: '200px', sortable: false }
       { field: 'updated_by', caption: 'updatedBy', size: '200px', sortable: false }
     ]
+
+  # Static Functions
+  @showDivisionControl: ->
+    $('.divisionControl').removeClass('hide')
+
+  @hideDivisionControl: ->
+    $('.divisionControl').addClass('hide')
+
+  @unfocusDivisionListing: ->
+    if w2ui.mainContentLayout.content('main').name != 'schemaGrid'
+      w2ui.mainContentLayout.content('main', w2ui.schemaGrid)
+
+      divisionSelected = w2ui.sidebarDivisionListing.selected
+      if divisionSelected
+        w2ui.sidebarDivisionListing.unselect(divisionSelected)
+
+  @unfocusTableListing: ->
+    if w2ui.mainContentLayout.content('main').name != 'divisionGrid'
+      w2ui.mainContentLayout.content('main', w2ui.divisionGrid)
+
+      tableSelected = w2ui.sidebarTableListing.selected
+      if tableSelected
+        w2ui.sidebarTableListing.unselect(tableSelected)
+
+  @loadTableData: (projectId, tableId, versionId) ->
+    url = "/api/projects/#{projectId}/tables/#{tableId}?version=#{versionId}"
+    w2ui.schemaGrid.load(url)
+
+  @loadDivisionData:  (projectId, divisionId, versionId) ->
+    url = "/api/projects/#{projectId}/divisions/#{divisionId}?version=#{versionId}"
+    w2ui.divisionGrid.load(url)
 
   # Functions
   constructor: ->
@@ -181,6 +193,7 @@ class @SchemaViews
     @setupVersionHook()
     @setupRelationHook()
     @setupSchemaGridEditForm()
+    @setupNewDivisionForm()
 
   setupProjectHook: ->
     $(document.body).delegate('#projects', 'change', (v) ->
@@ -205,4 +218,11 @@ class @SchemaViews
     schemaColumnEditForm = new SchemaColumnEditView()
     w2ui.schemaGrid.on('dblClick', (event) ->
       schemaColumnEditForm.exec(@get(event.recid))
+    )
+
+  setupNewDivisionForm: ->
+    form = new NewDivisionViews()
+    $(document.body).delegate('#addingNewCodeTable', 'click', ->
+      versionId = $('#versions').val()
+      form.exec(versionId)
     )
