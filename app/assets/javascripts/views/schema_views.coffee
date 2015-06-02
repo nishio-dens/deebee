@@ -44,7 +44,7 @@ class @SchemaViews
   sidebarDivisionListing:
     name: 'sidebarDivisionListing',
     nodes: [
-      { id: 'divisions', text: 'Divisions', group: true, expanded: true, nodes: []}
+      { id: 'divisions', text: 'Codes', group: true, expanded: true, nodes: []}
     ],
     onClick: (event) ->
       if w2ui.mainContentLayout.content('main').name != 'divisionGrid'
