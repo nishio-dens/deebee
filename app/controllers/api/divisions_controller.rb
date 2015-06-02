@@ -36,6 +36,12 @@ class Api::DivisionsController < ApplicationController
     }
   end
 
+  def destroy
+    division = @version.divisions.find(params[:id])
+    division.destroy!
+    render nothing: true
+  end
+
   private
 
   def set_version

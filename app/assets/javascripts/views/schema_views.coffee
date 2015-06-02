@@ -194,6 +194,7 @@ class @SchemaViews
     @setupRelationHook()
     @setupSchemaGridEditForm()
     @setupNewDivisionForm()
+    @setupDestroyDivisionForm()
 
   setupProjectHook: ->
     $(document.body).delegate('#projects', 'change', (v) ->
@@ -225,4 +226,12 @@ class @SchemaViews
     $(document.body).delegate('#addingNewCodeTable', 'click', ->
       versionId = $('#versions').val()
       form.exec(versionId)
+    )
+
+  setupDestroyDivisionForm: ->
+    form = new DestroyDivisionViews()
+    $(document.body).delegate('#destroyCodeTable', 'click', ->
+      versionId = $('#versions').val()
+      divisionSelected = w2ui.sidebarDivisionListing.selected
+      form.exec(versionId, divisionSelected)
     )
