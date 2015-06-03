@@ -83,6 +83,11 @@ class @SchemaViews
     autoLoad: true,
     method: 'GET',
     reorderColumns: true,
+    show:
+      toolbar: true,
+      toolbarAdd: true
+      toolbarDelete: true
+      toolbarEdit: true
     columns: [
       { field: 'code_value', caption: 'Code', size: '150px', sortable: false }
       { field: 'name', caption: 'Name', size: '150px', sortable: false }
@@ -209,6 +214,7 @@ class @SchemaViews
     $(document.body).delegate('#versions', 'change', (v) =>
       versionId = $(v.currentTarget).val()
       @loadTables(projectId, versionId)
+      @loadDivisions(projectId, versionId)
     )
 
   setupRelationHook: ->
