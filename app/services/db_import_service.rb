@@ -12,25 +12,26 @@ class DbImportService
 
   def import(description = "")
     Version.transaction do
-      snapshots = create_snapshot(description)
+      current_version = Version.where(project_id: @project.id).order(id: :desc).limit(1).first
+      next_version = Version.new(
+        project_id: @project.id,
+        name: "v#{Time.current.strftime("%y%m%d_%H%M%S")}",
+        description: description
+      )
+      snapshots = create_snapshot(current_version, next_version)
       snapshots.each(&:save)
+
+      migrate_divisions(current_version, next_version)
     end
   end
 
-  def create_snapshot(description)
+  def create_snapshot(current_version, next_version)
     information_schema_columns = @client.query(select_mysql_columns(@database)).to_a
-
-    version = Version.new(
-      project_id: @project.id,
-      name: "v#{Time.current.strftime("%y%m%d_%H%M%S")}",
-      description: description
-    )
-    current_version = Version.where(project_id: @project.id).order(id: :desc).limit(1).first
 
     columns = information_schema_columns.group_by { |v| v['TABLE_NAME'] }.map do |table_name, cc|
       current_table = current_version.tables.find_by(name: table_name)
       table = Table.new(
-        version: version,
+        version: next_version,
         name: table_name,
         description: current_table.try(:description)
       )
@@ -86,5 +87,22 @@ class DbImportService
     WHERE c.TABLE_SCHEMA = '#{database_name}'
     ORDER BY C.TABLE_NAME, C.ORDINAL_POSITION
 EOS
+  end
+
+  def migrate_divisions(previous_version, current_version)
+    divisions = previous_version.divisions.map do |division|
+      div = Division.new.tap do |d|
+        d.attributes = division.attributes.except('id')
+        d.version_id = current_version.id
+      end
+      division.codes.each do |c|
+        new_code = Code.new
+        new_code.attributes = c.attributes.except('id')
+        new_code.division = div
+        div.codes << new_code
+      end
+      div
+    end
+    divisions.each(&:save)
   end
 end
