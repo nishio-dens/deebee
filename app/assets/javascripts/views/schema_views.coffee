@@ -56,8 +56,8 @@ class @SchemaViews
     method: 'GET',
     reorderColumns: true,
     columns: [
-      { field: 'column', caption: 'Column', size: '150px', sortable: false }
       { field: 'logical_name', caption: 'Logical Name', size: '150px', sortable: false }
+      { field: 'column', caption: 'Column', size: '150px', sortable: false }
       { field: 'column_type', caption: 'Type', size: '80px', sortable: false }
       { field: 'not_null', caption: 'Required', size: '70px', sortable: false, attr: 'align=center' }
       { field: 'length', caption: 'Length', size: '70px', sortable: false, attr: 'align=center' }

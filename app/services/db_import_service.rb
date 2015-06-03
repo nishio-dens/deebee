@@ -52,6 +52,7 @@ class DbImportService
         Column.new(
           table: table,
           column: column['COLUMN_NAME'],
+          logical_name: column['COLUMN_COMMENT'].present? ? column['COLUMN_COMMENT'] : column['COLUMN_NAME'],
           column_type: column['DATA_TYPE'],
           not_null: column['IS_NULLABLE'] == 'YES'? '' : 'Y',
           length: length,
