@@ -98,6 +98,14 @@ class @SchemaViews
       { field: 'created_by', caption: 'CreatedBy', size: '200px', sortable: false }
       { field: 'updated_by', caption: 'updatedBy', size: '200px', sortable: false }
     ]
+    onAdd: (event) ->
+      form = new CodeFormView()
+      form.execAdd()
+   
+    onEdit: (event) ->
+      form = new CodeFormView()
+      record = w2ui.divisionGrid.get(event.recid)
+      form.execEdit(record)
 
   # Static Functions
   @showDivisionControl: ->

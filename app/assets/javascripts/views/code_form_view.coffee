@@ -1,0 +1,52 @@
+class @CodeFormView
+  codeForm:
+    name : 'codeForm',
+    style    : 'border: 0px; background-color: transparent;'
+    formHTML : $('#codeForm').render()
+    fields: [
+      { name: 'code_value', type: 'text', required: true },
+      { name: 'name', type: 'text', required: true },
+      { name: 'alias', type: 'text' },
+      { name: 'comment', type: 'text' },
+    ]
+    actions:
+      save: ->
+        if @validate().length == 0
+          saveSuccessCallback = ->
+            w2ui['users'].reload()
+            $().w2popup('close')
+
+          if @recid == null
+            alert('call')
+          else
+            alert('call')
+
+      cancel: ->
+        $().w2popup('close')
+ 
+  constructor: ->
+    unless w2ui.codeForm
+      $().w2form(@codeForm)
+
+  execAdd: ->
+    $().w2popup('open', $.extend({
+      title: 'Add Code',
+      body : '<div id="code_form" style="width: 100%; height: 100%;"></div>',
+      onOpen: (event) ->
+        event.onComplete = ->
+          $('#w2ui-popup #code_form').w2render('codeForm')
+          w2ui['codeForm'].clear()
+          w2ui['codeForm'].recid = null
+    }, @codeForm))
+
+  execEdit: (record) ->
+    $().w2popup('open', $.extend({
+      title: 'Edit Code',
+      body : '<div id="code_form" style="width: 100%; height: 100%;"></div>',
+      onOpen: (event) ->
+        event.onComplete = ->
+          w2ui['codeForm'].clear()
+          w2ui['codeForm'].record = record
+          $('#w2ui-popup #code_form').w2render('codeForm')
+    }, @codeForm))
+
