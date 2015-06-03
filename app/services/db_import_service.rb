@@ -25,7 +25,7 @@ class DbImportService
       name: "v#{Time.current.strftime("%y%m%d_%H%M%S")}",
       description: description
     )
-    current_version = Version.where(project_id: @project.id).order(id: :desc).limit(1).first()
+    current_version = Version.where(project_id: @project.id).order(id: :desc).limit(1).first
 
     columns = information_schema_columns.group_by { |v| v['TABLE_NAME'] }.map do |table_name, cc|
       current_table = current_version.tables.find_by(name: table_name)
