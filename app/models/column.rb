@@ -5,6 +5,7 @@
 #  id                   :integer          not null, primary key
 #  table_id             :integer          not null
 #  column               :string(255)      not null
+#  logical_name         :string(255)      not null
 #  column_type          :string(255)      not null
 #  not_null             :string(1)        default(""), not null
 #  length               :string(255)      default("")

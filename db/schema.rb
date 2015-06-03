@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "columns", force: :cascade do |t|
     t.integer  "table_id",             limit: 4,                  null: false
     t.string   "column",               limit: 255,                null: false
+    t.string   "logical_name",         limit: 255,                null: false
     t.string   "column_type",          limit: 255,                null: false
     t.string   "not_null",             limit: 1,     default: "", null: false
     t.string   "length",               limit: 255,   default: ""
