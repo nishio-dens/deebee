@@ -17,9 +17,17 @@ class @CodeFormView
             $().w2popup('close')
 
           if @recid == null
-            alert('call')
+            $.ajax(
+              url: '/api/projects/' + gon.project_id + '/' + 'codes?version=' + @versionId,
+              type: 'POST',
+              data: { record: @record }
+            ).done(successCallback)
           else
-            alert('call')
+            $.ajax(
+              url: '/api/projects/' + gon.project_id + '/' + 'codes/' + @record.recid + '?version=' + @versionId,
+              type: 'PUT',
+              data: { record: @record }
+            ).done(successCallback)
 
       cancel: ->
         $().w2popup('close')
