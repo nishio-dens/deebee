@@ -36,7 +36,7 @@ class @CodeFormView
     unless w2ui.codeForm
       $().w2form(@codeForm)
 
-  execAdd: ->
+  execAdd: (versionId) ->
     $().w2popup('open', $.extend({
       title: 'Add Code',
       body : '<div id="code_form" style="width: 100%; height: 100%;"></div>',
@@ -45,9 +45,10 @@ class @CodeFormView
           $('#w2ui-popup #code_form').w2render('codeForm')
           w2ui['codeForm'].clear()
           w2ui['codeForm'].recid = null
+          w2ui['codeForm'].versionId = versionId
     }, @codeForm))
 
-  execEdit: (record) ->
+  execEdit: (versionId, record) ->
     $().w2popup('open', $.extend({
       title: 'Edit Code',
       body : '<div id="code_form" style="width: 100%; height: 100%;"></div>',
@@ -55,6 +56,7 @@ class @CodeFormView
         event.onComplete = ->
           w2ui['codeForm'].clear()
           w2ui['codeForm'].record = record
+          w2ui['codeForm'].versionId = versionId
           $('#w2ui-popup #code_form').w2render('codeForm')
     }, @codeForm))
 
