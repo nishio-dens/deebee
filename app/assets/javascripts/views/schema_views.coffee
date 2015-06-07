@@ -111,6 +111,15 @@ class @SchemaViews
       record = w2ui.divisionGrid.get(event.recid)
       form.execEdit(divisionId, versionId, record)
 
+    onDelete: (target, event) ->
+      if event.force
+        event.preventDefault()
+        form = new CodeFormView()
+        versionId = $('#versions').val()
+        divisionId = w2ui.sidebarDivisionListing.selected
+        record = w2ui.divisionGrid.get(event.recid)
+        form.execDelete(divisionId, versionId, record)
+
   # Static Functions
   @showDivisionControl: ->
     $('.divisionControl').removeClass('hide')

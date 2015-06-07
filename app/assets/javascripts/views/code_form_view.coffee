@@ -12,8 +12,9 @@ class @CodeFormView
     actions:
       save: ->
         if @validate().length == 0
-          successCallback = ->
-            w2ui['users'].reload()
+          successCallback = (data) ->
+            w2ui['divisionGrid'].add(data)
+            w2ui['divisionGrid'].reload()
             $().w2popup('close')
 
           if @recid == null
@@ -62,3 +63,9 @@ class @CodeFormView
           $('#w2ui-popup #code_form').w2render('codeForm')
     }, @codeForm))
 
+  execDelete: (divisionId, versionId, record) ->
+    $.ajax(
+      url: '/api/projects/' + gon.project_id + '/divisions/' + divisionId + '/codes/' + record.recid + '?version=' + versionId,
+      type: 'DELETE',
+      data: { record: @record }
+    )

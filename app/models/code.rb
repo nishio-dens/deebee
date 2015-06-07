@@ -14,4 +14,9 @@
 
 class Code < ActiveRecord::Base
   belongs_to :division
+
+  validates :code_value, presence: true, length: { maximum: 255 }
+  validates :name, presence: true, length: { maximum: 255 }
+  validates :alias, length: { maximum: 255 }
+  validates :comment, length: { maximum: 65_535 }
 end

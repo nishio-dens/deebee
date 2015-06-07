@@ -4,12 +4,27 @@ class Api::CodesController < ApplicationController
 
   def create
     code = Code.new(division: @division)
-    code.attributes =
+    code.attributes = code_attributes
     if code.save
+      render json: code.as_json.merge(recid: code.id)
+    else
+      fail 'Invalid Request'
     end
   end
 
   def update
+    code = @division.codes.find(params[:id])
+    if code.update_attributes(code_attributes)
+      render json: code
+    else
+      fail 'Invalid Request'
+    end
+  end
+
+  def destroy
+    code = @division.codes.find(params[:id])
+    code.destroy
+    render nothing: true
   end
 
   private
@@ -20,5 +35,9 @@ class Api::CodesController < ApplicationController
 
   def set_division
     @division = @version.divisions.find(params[:division_id])
+  end
+
+  def code_attributes
+    params.require(:record).permit(:code_value, :name, :alias, :comment)
   end
 end
