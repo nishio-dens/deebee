@@ -100,14 +100,16 @@ class @SchemaViews
     ]
     onAdd: (event) ->
       form = new CodeFormView()
-      versionId = $(v.currentTarget).val()
-      form.execAdd(versionId)
+      divisionId = w2ui.sidebarDivisionListing.selected
+      versionId = $('#versions').val()
+      form.execAdd(divisionId, versionId)
    
     onEdit: (event) ->
       form = new CodeFormView()
-      versionId = $(v.currentTarget).val()
+      versionId = $('#versions').val()
+      divisionId = w2ui.sidebarDivisionListing.selected
       record = w2ui.divisionGrid.get(event.recid)
-      form.execEdit(versionId, record)
+      form.execEdit(divisionId, versionId, record)
 
   # Static Functions
   @showDivisionControl: ->

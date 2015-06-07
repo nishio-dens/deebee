@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "division_id", limit: 4,     null: false
     t.string   "code_value",  limit: 255,   null: false
     t.string   "name",        limit: 255,   null: false
-    t.string   "alias",       limit: 255,   null: false
-    t.text     "comment",     limit: 65535, null: false
+    t.string   "alias",       limit: 255
+    t.text     "comment",     limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end

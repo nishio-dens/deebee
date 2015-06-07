@@ -100,8 +100,8 @@ create_table :codes, collate: :utf8_bin do |t|
   t.int :division_id
   t.varchar :code_value
   t.varchar :name
-  t.varchar :alias
-  t.text :comment
+  t.varchar :alias, null: true
+  t.text :comment, null: true
   t.datetime :created_at
   t.datetime :updated_at
 

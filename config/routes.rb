@@ -18,8 +18,9 @@ Rails.application.routes.draw do
     resources :projects, only: [] do
       resources :tables, only: [:index, :show]
       resources :columns, only: [:update]
-      resources :divisions, only: [:index, :show, :create, :destroy]
-      resources :codes, only: [:create, :update, :destroy]
+      resources :divisions, only: [:index, :show, :create, :destroy] do
+        resources :codes, only: [:create, :update, :destroy]
+      end
     end
   end
 end
