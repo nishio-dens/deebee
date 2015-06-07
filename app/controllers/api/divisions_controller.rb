@@ -13,7 +13,7 @@ class Api::DivisionsController < ApplicationController
   end
 
   def show
-    division = @version.divisions.find(params[:id])
+    division = Division.find(params[:id])
     codes = division
       .codes
       .order(:code_value)

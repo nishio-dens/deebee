@@ -27,11 +27,7 @@ class @SchemaViews
       { id: 'tables', text: 'Tables', group: true, expanded: true, nodes: [], count: 30}
     ],
     onClick: (event) ->
-      location.hash = "Table_#{event.target}"
-      SchemaViews.unfocusDivisionListing()
-      versionId = $('#versions').val()
-      SchemaViews.loadTableData(gon.project_id, event.target, versionId)
-      SchemaViews.hideDivisionControl()
+      location.hash = "tables/#{event.target}"
 
   sidebarDivisionListing:
     name: 'sidebarDivisionListing',
@@ -39,11 +35,7 @@ class @SchemaViews
       { id: 'divisions', text: 'Codes', group: true, expanded: true, nodes: []}
     ],
     onClick: (event) ->
-      location.hash = "Division_#{event.target}"
-      SchemaViews.unfocusTableListing()
-      versionId = $('#versions').val()
-      SchemaViews.loadDivisionData(gon.project_id, event.target, versionId)
-      SchemaViews.showDivisionControl()
+      location.hash = "divisions/#{event.target}"
 
   mainContentLayout:
     name: 'mainContentLayout',

@@ -13,7 +13,8 @@ class Api::TablesController < ApplicationController
   end
 
   def show
-    table = @version.tables.find(params[:id])
+    table = Table.find(params[:id])
+    @version ||= table.version
     columns = table
       .columns
       .order(:ordinal_position)
