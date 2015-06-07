@@ -232,13 +232,15 @@ class @SchemaViews
     )
 
   setupRelationHook: ->
-    $(document.body).delegate('.relationLink', 'click', (v) ->
+    $(document.body).delegate('.relationLink', 'click', (e) ->
+      e.preventDefault()
       id = $(@).data('relation-id')
-      $('[name=sidebarTableListing]').find('#node_' + id).click()
+      location.hash = "tables/#{id}"
     )
-    $(document.body).delegate('.divisionLink', 'click', (v) ->
+    $(document.body).delegate('.divisionLink', 'click', (e) ->
+      e.preventDefault()
       id = $(@).data('relation-id')
-      $('[name=sidebarDivisionListing]').find('#node_' + id).click()
+      location.hash = "divisions/#{id}"
     )
 
   setupSchemaGridEditForm: ->

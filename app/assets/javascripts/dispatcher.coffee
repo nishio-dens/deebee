@@ -9,7 +9,7 @@ class Dispatcher
   @setupSchemataBackbone: ->
     window.application = new Backbone.Marionette.Application()
     controller = new ProjectsController()
-    routers = new DeebeeRouters(controller: controller)
+    window.routers = new DeebeeRouters(controller: controller)
     Backbone.history.start()
     window.application.start()
 
