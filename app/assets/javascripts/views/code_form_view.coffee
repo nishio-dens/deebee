@@ -63,9 +63,9 @@ class @CodeFormView
           $('#w2ui-popup #code_form').w2render('codeForm')
     }, @codeForm))
 
-  execDelete: (divisionId, versionId, record) ->
+  execDelete: (divisionId, versionId, recid) ->
     $.ajax(
-      url: '/api/projects/' + gon.project_id + '/divisions/' + divisionId + '/codes/' + record.recid + '?version=' + versionId,
+      url: '/api/projects/' + gon.project_id + '/divisions/' + divisionId + '/codes/' + recid + '?version=' + versionId,
       type: 'DELETE',
       data: { record: @record }
     )

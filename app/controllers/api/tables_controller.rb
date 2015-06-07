@@ -48,11 +48,20 @@ class Api::TablesController < ApplicationController
     if related_table
       record['application_relation'] = generate_table_links(related_table.id, related_table.name)
     end
+    related_division = version.divisions.find_by(name: record['application_relation'])
+    if related_division
+      record['application_relation'] = generate_division_links(related_division.id, related_division.name)
+    end
     record
   end
 
   def generate_table_links(id, table_name)
     "<a href='#' class='relationLink' data-relation-id='#{id}'>" +
     "<i class='fa fa-caret-right'></i> #{table_name}</a>"
+  end
+
+  def generate_division_links(id, division_name)
+    "<a href='#' class='divisionLink' data-relation-id='#{id}'>" +
+    "<i class='fa fa-caret-right'></i> #{division_name}</a>"
   end
 end

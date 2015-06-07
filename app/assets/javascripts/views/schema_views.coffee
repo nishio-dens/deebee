@@ -27,6 +27,7 @@ class @SchemaViews
       { id: 'tables', text: 'Tables', group: true, expanded: true, nodes: [], count: 30}
     ],
     onClick: (event) ->
+      location.hash = "Table_#{event.target}"
       SchemaViews.unfocusDivisionListing()
       versionId = $('#versions').val()
       SchemaViews.loadTableData(gon.project_id, event.target, versionId)
@@ -38,6 +39,7 @@ class @SchemaViews
       { id: 'divisions', text: 'Codes', group: true, expanded: true, nodes: []}
     ],
     onClick: (event) ->
+      location.hash = "Division_#{event.target}"
       SchemaViews.unfocusTableListing()
       versionId = $('#versions').val()
       SchemaViews.loadDivisionData(gon.project_id, event.target, versionId)
@@ -113,12 +115,11 @@ class @SchemaViews
 
     onDelete: (target, event) ->
       if event.force
-        event.preventDefault()
         form = new CodeFormView()
         versionId = $('#versions').val()
         divisionId = w2ui.sidebarDivisionListing.selected
-        record = w2ui.divisionGrid.get(event.recid)
-        form.execDelete(divisionId, versionId, record)
+        recid = @getSelection()
+        form.execDelete(divisionId, versionId, recid)
 
   # Static Functions
   @showDivisionControl: ->
@@ -242,6 +243,10 @@ class @SchemaViews
     $(document.body).delegate('.relationLink', 'click', (v) ->
       id = $(@).data('relation-id')
       $('[name=sidebarTableListing]').find('#node_' + id).click()
+    )
+    $(document.body).delegate('.divisionLink', 'click', (v) ->
+      id = $(@).data('relation-id')
+      $('[name=sidebarDivisionListing]').find('#node_' + id).click()
     )
 
   setupSchemaGridEditForm: ->
