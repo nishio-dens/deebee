@@ -29,7 +29,7 @@ class DbImportService
     information_schema_columns = @client.query(select_mysql_columns(@database)).to_a
 
     columns = information_schema_columns.group_by { |v| v['TABLE_NAME'] }.map do |table_name, cc|
-      current_table = current_version.tables.find_by(name: table_name)
+      current_table = current_version.try(:tables).try(:find_by, name: table_name)
       table = Table.new(
         version: next_version,
         name: table_name,
@@ -90,6 +90,7 @@ EOS
   end
 
   def migrate_divisions(previous_version, current_version)
+    return if previous_version.nil?
     divisions = previous_version.divisions.map do |division|
       div = Division.new.tap do |d|
         d.attributes = division.attributes.except('id')
