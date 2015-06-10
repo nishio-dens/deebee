@@ -63,11 +63,12 @@ class DbImportService
           default: column['COLUMN_DEFAULT'],
           key: column['COLUMN_KEY'],
           extra: column['EXTRA'],
-          comment: column['COLUMN_COMMENT'],
-          relation: column['REFERENCED_TABLE_NAME'],
-          ordinal_position: column['ORDINAL_POSITION'],
           example: current_column.try(:example),
-          note: current_column.try(:note)
+          relation: column['REFERENCED_TABLE_NAME'],
+          application_relation: current_column.try(:application_relation),
+          comment: column['COLUMN_COMMENT'],
+          note: current_column.try(:note),
+          ordinal_position: column['ORDINAL_POSITION']
         )
       end
     end
